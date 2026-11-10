@@ -10,32 +10,42 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Poppins:wght@400;600;800&display=swap');
         .font-teko { font-family: 'Teko', sans-serif; }
-        body { font-family: 'Poppins', sans-serif; background-color: #050505; color: #f3f4f6; }
+        body { font-family: 'Poppins', sans-serif; background-color: #030007; color: #f3f4f6; }
+        
         .neon-box {
-            background: linear-gradient(145deg, #0a0a0a, #121212);
-            border: 1px solid #27272a;
-            box-shadow: 0 4px 25px -5px rgba(255, 255, 255, 0.07);
+            background: linear-gradient(145deg, #0d0614, #150a21);
+            border: 1px solid #3b1b5c;
+            box-shadow: 0 4px 25px -5px rgba(168, 85, 247, 0.12);
         }
         .neon-active-glow {
-            border: 2px solid #ffffff !important;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
-            background: linear-gradient(145deg, #121212, #1a1a1a);
+            border: 2px solid #c084fc !important;
+            box-shadow: 0 0 25px rgba(192, 132, 252, 0.5), inset 0 0 10px rgba(192, 132, 252, 0.25);
+            background: linear-gradient(145deg, #180b29, #24103d);
+        }
+        .purple-glow-btn {
+            background: linear-gradient(135deg, #9333ea, #a855f7);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            transition: all 0.3s ease;
+        }
+        .purple-glow-btn:hover {
+            background: linear-gradient(135deg, #a855f7, #c084fc);
+            box-shadow: 0 0 25px rgba(192, 132, 252, 0.7);
         }
     </style>
 </head>
-<body class="bg-[#050505] min-h-screen flex flex-col text-gray-100">
+<body class="bg-[#030007] min-h-screen flex flex-col text-gray-100">
 
     <!-- HEADER -->
-    <header class="bg-black/90 border-b border-zinc-800 p-4 sticky top-0 z-50 backdrop-blur-md">
+    <header class="bg-[#090312]/90 border-b border-purple-950 p-4 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <span class="inline-block w-2.5 h-2.5 bg-white rounded-full animate-pulse"></span>
-                <span class="font-teko text-3xl tracking-wider text-white font-bold">
-                    RECARGAS <span class="text-zinc-500">HORNET</span>
+                <span class="inline-block w-2.5 h-2.5 bg-purple-400 rounded-full animate-pulse shadow-[0_0_10px_#c084fc]"></span>
+                <span class="font-teko text-3xl tracking-wider text-white font-bold drop-shadow-[0_2px_8px_rgba(168,85,247,0.5)]">
+                    RECARGAS <span class="text-purple-400">HORNET</span>
                 </span>
             </div>
-            <div class="bg-zinc-900 border border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-bold text-white flex items-center gap-2">
-                <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+            <div class="bg-purple-950/60 border border-purple-800/60 px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-200 flex items-center gap-2 shadow-inner">
+                <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping"></span>
                 <span id="statusText">Sistema Online</span>
             </div>
         </div>
@@ -48,17 +58,17 @@
             <!-- PASO 1 -->
             <div class="neon-box p-6 rounded-3xl">
                 <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-white text-black w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black">1</span> 
+                    <span class="bg-purple-600 text-white w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(168,85,247,0.6)]">1</span> 
                     Ingresa tus Datos de Jugador
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="text-[11px] text-zinc-400 font-bold uppercase tracking-wider block mb-1.5">Player ID (Free Fire)</label>
-                        <input type="number" id="playerId" placeholder="Ej: 123456789" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3.5 text-white font-bold focus:border-white outline-none text-sm">
+                        <label class="text-[11px] text-purple-300 font-bold uppercase tracking-wider block mb-1.5">Player ID (Free Fire)</label>
+                        <input type="number" id="playerId" placeholder="Ej: 123456789" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3.5 text-white font-bold focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none text-sm transition">
                     </div>
                     <div>
-                        <label class="text-[11px] text-zinc-400 font-bold uppercase tracking-wider block mb-1.5">Región</label>
-                        <select id="playerRegion" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3.5 text-white font-bold focus:border-white outline-none text-sm">
+                        <label class="text-[11px] text-purple-300 font-bold uppercase tracking-wider block mb-1.5">Región</label>
+                        <select id="playerRegion" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3.5 text-white font-bold focus:border-purple-500 outline-none text-sm transition">
                             <option value="EEUU / LATAM">EE.UU. / LATAM</option>
                         </select>
                     </div>
@@ -68,49 +78,50 @@
             <!-- PASO 2: PAQUETES -->
             <div class="neon-box p-6 rounded-3xl">
                 <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-white text-black w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black">2</span> 
+                    <span class="bg-purple-600 text-white w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(168,85,247,0.6)]">2</span> 
                     Selecciona tu Paquete de Diamantes
                 </h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="productList">
-                    <!-- Los paquetes se cargan dinámicamente -->
-                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="productList"></div>
             </div>
         </div>
 
         <!-- RESUMEN Y PAGO -->
         <div class="space-y-6">
             <div class="neon-box p-6 rounded-3xl">
-                <h2 class="text-white font-extrabold text-base mb-4 border-b border-zinc-800 pb-3">Resumen del Pedido</h2>
+                <h2 class="text-white font-extrabold text-base mb-4 border-b border-purple-950 pb-3 flex items-center justify-between">
+                    <span>Resumen del Pedido</span>
+                    <i class="fa-solid fa-receipt text-purple-400 text-sm"></i>
+                </h2>
                 
                 <!-- CÓDIGO -->
-                <div class="mb-4 bg-zinc-950 p-3.5 rounded-2xl border border-zinc-800">
-                    <label class="text-[11px] text-zinc-400 font-bold block mb-1.5"><i class="fa-solid fa-ticket text-white"></i> Código de Creador:</label>
+                <div class="mb-4 bg-[#07020d] p-3.5 rounded-2xl border border-purple-950">
+                    <label class="text-[11px] text-purple-300 font-bold block mb-1.5"><i class="fa-solid fa-ticket text-purple-400"></i> Código de Creador:</label>
                     <div class="flex gap-2">
-                        <input type="text" id="creatorCode" class="w-full bg-black border border-zinc-800 rounded-xl p-2.5 text-xs text-white uppercase font-bold outline-none" placeholder="CÓDIGO">
-                        <button onclick="aplicarCodigo()" class="bg-white hover:bg-zinc-200 text-black font-extrabold px-3.5 rounded-xl text-xs">Aplicar</button>
+                        <input type="text" id="creatorCode" class="w-full bg-black border border-purple-950 rounded-xl p-2.5 text-xs text-white uppercase font-bold outline-none focus:border-purple-500" placeholder="CÓDIGO">
+                        <button onclick="aplicarCodigo()" class="bg-purple-600 hover:bg-purple-500 text-white font-extrabold px-3.5 rounded-xl text-xs transition shadow-md">Aplicar</button>
                     </div>
                     <span id="codeMsg" class="text-[10px] mt-1.5 block font-bold"></span>
                 </div>
 
-                <div class="space-y-3 text-sm mb-5 bg-zinc-950/50 p-4 rounded-2xl border border-zinc-900">
-                    <div class="flex justify-between text-zinc-400 text-xs font-medium">
+                <div class="space-y-3 text-sm mb-5 bg-[#07020d]/60 p-4 rounded-2xl border border-purple-950/60">
+                    <div class="flex justify-between text-purple-300 text-xs font-medium">
                         <span>Paquete:</span>
                         <span id="resProduct" class="text-white font-bold">Selecciona uno</span>
                     </div>
-                    <div id="discountRow" class="hidden flex justify-between text-xs text-green-400 font-bold">
+                    <div id="discountRow" class="hidden flex justify-between text-xs text-emerald-400 font-bold">
                         <span>Descuento Creador (-30 Bs):</span>
                         <span>-30 Bs</span>
                     </div>
-                    <div class="flex justify-between text-base font-black border-t border-zinc-800 pt-3">
-                        <span class="text-zinc-300">Total a Pagar:</span>
-                        <span id="resBs" class="text-white text-lg">0 Bs</span>
+                    <div class="flex justify-between text-base font-black border-t border-purple-950 pt-3">
+                        <span class="text-purple-200">Total a Pagar:</span>
+                        <span id="resBs" class="text-purple-300 text-lg">0 Bs</span>
                     </div>
                 </div>
 
                 <!-- PAGO MÓVIL -->
                 <div id="paymentSection" class="space-y-4">
-                    <div class="bg-zinc-950 p-4 rounded-2xl border border-zinc-800 text-xs text-zinc-300 space-y-1.5">
-                        <p class="font-bold text-white mb-2"><i class="fa-solid fa-money-bill-transfer text-emerald-400"></i> Datos Pago Móvil:</p>
+                    <div class="bg-[#07020d] p-4 rounded-2xl border border-purple-950 text-xs text-purple-200 space-y-1.5">
+                        <p class="font-bold text-white mb-2 flex items-center gap-1.5"><i class="fa-solid fa-money-bill-transfer text-emerald-400"></i> Datos Pago Móvil:</p>
                         <p class="flex justify-between"><span>Banco:</span> <strong class="text-white">Venezuela (0102)</strong></p>
                         <p class="flex justify-between"><span>Teléfono:</span> <strong class="text-white">04127920652</strong></p>
                         <p class="flex justify-between"><span>Cédula:</span> <strong class="text-white">4792065</strong></p>
@@ -119,23 +130,23 @@
 Teléfono: 04127920652
 Cédula: 4792065</textarea>
 
-                        <button onclick="copiarDatosPago()" class="mt-3 w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold py-2.5 px-3 rounded-xl text-[11px] flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-copy text-zinc-400"></i> <span id="copyBtnText">Copiar Datos de Pago</span>
+                        <button onclick="copiarDatosPago()" class="mt-3 w-full bg-purple-950/60 hover:bg-purple-900 border border-purple-800 text-purple-200 font-bold py-2.5 px-3 rounded-xl text-[11px] flex items-center justify-center gap-2 transition">
+                            <i class="fa-solid fa-copy text-purple-400"></i> <span id="copyBtnText">Copiar Datos de Pago</span>
                         </button>
                     </div>
 
                     <div>
-                        <label class="text-[11px] text-zinc-400 font-bold block mb-1.5">Últimos 4 o 6 dígitos de Referencia:</label>
-                        <input type="number" id="payRef" placeholder="Ej: 4589" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3 text-sm text-white font-bold outline-none">
+                        <label class="text-[11px] text-purple-300 font-bold block mb-1.5">Últimos 4 o 6 dígitos de Referencia:</label>
+                        <input type="number" id="payRef" placeholder="Ej: 4589" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3 text-sm text-white font-bold outline-none focus:border-purple-500">
                     </div>
                 </div>
 
                 <div id="closedNotice" class="hidden bg-red-950/40 border border-red-500/50 p-4 rounded-2xl text-center space-y-2 mb-4">
-                    <p class="text-red-400 font-bold text-xs"><i class="fa-solid fa-store-slash"></i> TIENDA FUERA DE LÍNEA</p>
+                    <p class="text-red-400 font-bold text-xs"><i class="fa-solid fa-store-slash text-red-500"></i> TIENDA FUERA DE LÍNEA</p>
                 </div>
 
-                <button onclick="enviarPedido()" id="btnSubmitOrder" class="w-full bg-white text-black font-extrabold py-4 rounded-2xl hover:bg-zinc-200 flex items-center justify-center gap-2 text-sm mt-4">
-                    <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i> ENVIAR PEDIDO
+                <button onclick="enviarPedido()" id="btnSubmitOrder" class="w-full purple-glow-btn text-white font-extrabold py-4 rounded-2xl flex items-center justify-center gap-2 text-sm mt-4 cursor-pointer">
+                    <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i> ENVIAR PEDIDO
                 </button>
             </div>
         </div>
@@ -143,33 +154,35 @@ Cédula: 4792065</textarea>
 
     <!-- ADMIN MODAL -->
     <div id="adminModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-zinc-950 border border-zinc-700 w-full max-w-md p-6 rounded-3xl space-y-5 shadow-2xl">
-            <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
-                <h3 class="text-white font-extrabold text-base">Panel de Control Hornet</h3>
-                <button onclick="cerrarAdminPanel()" class="text-zinc-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+        <div class="bg-[#090312] border border-purple-900 w-full max-w-md p-6 rounded-3xl space-y-5 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-purple-950 pb-3">
+                <h3 class="text-white font-extrabold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-purple-400"></i> Panel de Control Hornet
+                </h3>
+                <button onclick="cerrarAdminPanel()" class="text-purple-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div id="adminLoginSection" class="space-y-4">
-                <input type="password" id="adminPassword" placeholder="••••" class="w-full bg-black border border-zinc-700 rounded-2xl p-3.5 text-white text-center tracking-widest text-xl font-bold outline-none">
-                <button onclick="validarPasswordAdmin()" class="w-full bg-white text-black font-bold py-3.5 rounded-2xl text-xs uppercase">Desbloquear</button>
+                <input type="password" id="adminPassword" placeholder="••••" class="w-full bg-[#05010a] border border-purple-900 rounded-2xl p-3.5 text-white text-center tracking-widest text-xl font-bold outline-none focus:border-purple-500">
+                <button onclick="validarPasswordAdmin()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-2xl text-xs uppercase shadow-md transition">Desbloquear</button>
             </div>
             <div id="adminDashboardSection" class="space-y-4 hidden">
-                <div class="bg-black border border-zinc-800 p-3.5 rounded-2xl flex items-center justify-between">
-                    <span id="adminStatusLabel" class="text-xs text-zinc-300">Online</span>
-                    <button id="adminToggleStoreBtn" onclick="toggleEstadoTienda()" class="px-3 py-1.5 bg-red-600 text-white rounded-xl text-xs font-bold">Cambiar Estado</button>
+                <div class="bg-[#05010a] border border-purple-900 p-3.5 rounded-2xl flex items-center justify-between">
+                    <span id="adminStatusLabel" class="text-xs text-purple-300">Online</span>
+                    <button id="adminToggleStoreBtn" onclick="toggleEstadoTienda()" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition">Cambiar Estado</button>
                 </div>
                 <div id="adminPriceList" class="space-y-2 max-h-48 overflow-y-auto"></div>
-                <button onclick="guardarNuevosPrecios()" class="w-full bg-white text-black font-bold py-3 rounded-2xl text-xs">Guardar Cambios</button>
+                <button onclick="guardarNuevosPrecios()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-2xl text-xs transition">Guardar Cambios</button>
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <footer class="text-center py-6 text-zinc-500 text-xs border-t border-zinc-900 mt-auto bg-black">
-        <p>WhatsApp: +58 424-8768281 © 2026 Recargas Hornet</p>
-        <span onclick="intentarAbrirAdmin()" class="text-[9px] text-zinc-700 hover:text-white cursor-pointer select-none">⚙️ Admin Panel</span>
+    <footer class="text-center py-6 text-purple-400/60 text-xs border-t border-purple-950 mt-auto bg-[#030007]">
+        <p class="font-medium">WhatsApp: +58 424-8768281 © 2026 Recargas Hornet</p>
+        <span onclick="intentarAbrirAdmin()" class="text-[9px] text-purple-600 hover:text-purple-300 cursor-pointer select-none mt-1 inline-block">⚙️ Admin Panel</span>
     </footer>
 
-    <!-- SCRIPT INFALIBLE -->
+    <!-- SCRIPT -->
     <script>
         let products = JSON.parse(localStorage.getItem('hornet_products')) || [
             { id: 1, name: '110 Diamantes', bs: 860, tag: 'X+1 NP' },
@@ -197,14 +210,14 @@ Cédula: 4792065</textarea>
                 let isSelected = selectedProduct && selectedProduct.id === p.id;
                 
                 container.innerHTML += `
-                    <div onclick="selectProduct(${p.id})" class="bg-black p-3.5 rounded-2xl cursor-pointer transition flex flex-col justify-between border ${isSelected ? 'neon-active-glow' : 'border-zinc-800 hover:border-zinc-600'}">
+                    <div onclick="selectProduct(${p.id})" class="bg-[#07020d] p-3.5 rounded-2xl cursor-pointer transition flex flex-col justify-between border ${isSelected ? 'neon-active-glow' : 'border-purple-950 hover:border-purple-700'}">
                         <div>
-                            <span class="text-[9px] bg-white text-black px-2 py-0.5 rounded-md font-extrabold uppercase">${p.tag}</span>
-                            <h4 class="font-bold text-xs sm:text-sm mt-2 text-white"><i class="fa-solid fa-gem text-zinc-400 text-xs"></i> ${p.name}</h4>
+                            <span class="text-[9px] bg-purple-600 text-white px-2 py-0.5 rounded-md font-extrabold uppercase shadow-[0_0_8px_rgba(168,85,247,0.4)]">${p.tag}</span>
+                            <h4 class="font-bold text-xs sm:text-sm mt-2 text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-purple-400 text-xs"></i> ${p.name}</h4>
                         </div>
-                        <div class="mt-3 pt-2 border-t border-zinc-900">
-                            ${descuentoAplicado ? `<span class="text-zinc-500 line-through text-[10px] block">${p.bs} Bs</span>` : ''}
-                            <span class="text-white font-black text-sm">${precioFinal} Bs</span>
+                        <div class="mt-3 pt-2 border-t border-purple-950/60">
+                            ${descuentoAplicado ? `<span class="text-purple-500 line-through text-[10px] block">${p.bs} Bs</span>` : ''}
+                            <span class="text-purple-300 font-black text-sm">${precioFinal} Bs</span>
                         </div>
                     </div>
                 `;
@@ -254,7 +267,7 @@ Cédula: 4792065</textarea>
             const btnSubmitOrder = document.getElementById('btnSubmitOrder');
 
             if (tiendaActiva) {
-                statusDot.className = "w-2.5 h-2.5 rounded-full bg-white animate-ping";
+                statusDot.className = "w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping";
                 statusText.innerText = "Sistema Online";
                 paymentSection.classList.remove('hidden');
                 closedNotice.classList.add('hidden');
@@ -294,9 +307,9 @@ Cédula: 4792065</textarea>
             container.innerHTML = '';
             products.forEach((p, index) => {
                 container.innerHTML += `
-                    <div class="flex items-center justify-between bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-xs">
+                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
                         <span class="text-white font-bold">${p.name}</span>
-                        <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-zinc-700 text-white font-bold px-2.5 py-1.5 rounded-lg text-right">
+                        <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
                     </div>
                 `;
             });
@@ -322,30 +335,4 @@ Cédula: 4792065</textarea>
 
         function copiarDatosPago() {
             const copyText = document.getElementById("clipboardText");
-            copyText.select();
-            try { navigator.clipboard.writeText(copyText.value); } catch (e) { document.execCommand("copy"); }
-            const btn = document.getElementById('copyBtnText');
-            btn.innerText = "¡Copiado!";
-            setTimeout(() => { btn.innerText = "Copiar Datos de Pago"; }, 2000);
-        }
-
-        function enviarPedido() {
-            if (!tiendaActiva) return alert('Tienda cerrada.');
-            const id = document.getElementById('playerId').value.trim();
-            const ref = document.getElementById('payRef').value.trim();
-            if(!id) return alert('Ingresa tu Player ID');
-            if(!selectedProduct) return alert('Selecciona un paquete');
-            if(!ref || ref.length < 4) return alert('Ingresa la referencia');
-
-            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
-            let codTxt = descuentoAplicado ? `%0A🎟️ *Código:* ${codigoUsado} (-30 Bs)` : '';
-            window.open(`https://wa.me/${wspNum}?text=*PEDIDO - RECARGAS HORNET*%0A%0A🆔 *ID:* ${id}%0A📦 *Paq:* ${selectedProduct.name}%0A💵 *Total:* ${total} Bs${codTxt}%0A🧾 *Ref:* ${ref}`, '_blank');
-        }
-
-        // Inicialización instantánea segura
-        verificarEstadoVisual();
-        renderProducts();
-    </script>
-</body>
-</html>
-
+            copyText.sel
