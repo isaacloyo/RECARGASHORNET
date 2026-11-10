@@ -5,103 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recargas Hornet | Diamantes Free Fire Venezuela 24/7</title>
     <meta name="description" content="Recargas Hornet - Recarga diamantes de Free Fire en Venezuela al instante por ID. Pago Móvil Banco de Venezuela 0102, entregas rápidas y 100% seguro.">
-    <meta name="google-site-verification" content="aN9lxi_FfXLAQUIHtQCaVw4vW66Bu1Z1Z7xMESqVvoQ" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Poppins:wght@400;600;800&display=swap');
         .font-teko { font-family: 'Teko', sans-serif; }
         body { font-family: 'Poppins', sans-serif; background-color: #050505; color: #f3f4f6; }
-        
-        /* Estilos de Neón Avanzados */
         .neon-box {
             background: linear-gradient(145deg, #0a0a0a, #121212);
             border: 1px solid #27272a;
             box-shadow: 0 4px 25px -5px rgba(255, 255, 255, 0.07);
-            transition: all 0.3s ease;
-        }
-        .neon-box:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.12);
         }
         .neon-active-glow {
             border: 2px solid #ffffff !important;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
             background: linear-gradient(145deg, #121212, #1a1a1a);
         }
-        .header-glow {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-        }
     </style>
 </head>
-<body class="bg-[#050505] min-h-screen flex flex-col text-gray-100 selection:bg-white selection:text-black">
+<body class="bg-[#050505] min-h-screen flex flex-col text-gray-100">
 
-    <!-- HEADER PROFESIONAL (SIN LOGO, DISEÑO ELEGANTE Y CENTRADO) -->
-    <header class="bg-black/90 border-b border-zinc-800 p-4 sticky top-0 z-50 header-glow">
+    <!-- HEADER -->
+    <header class="bg-black/90 border-b border-zinc-800 p-4 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <span class="inline-block w-2.5 h-2.5 bg-white rounded-full animate-pulse shadow-[0_0_10px_#fff]"></span>
-                <span class="font-teko text-3xl tracking-wider text-white font-bold drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+                <span class="inline-block w-2.5 h-2.5 bg-white rounded-full animate-pulse"></span>
+                <span class="font-teko text-3xl tracking-wider text-white font-bold">
                     RECARGAS <span class="text-zinc-500">HORNET</span>
                 </span>
             </div>
-            
-            <div id="statusIndicator" class="bg-zinc-900 border border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-bold text-white flex items-center gap-2 shadow-inner">
+            <div class="bg-zinc-900 border border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-bold text-white flex items-center gap-2">
                 <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
                 <span id="statusText">Sistema Online</span>
             </div>
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- CONTENIDO -->
     <main class="max-w-4xl mx-auto p-4 md:p-6 flex-grow w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
         
         <div class="md:col-span-2 space-y-6">
-            <!-- PASO 1: DATOS DE JUGADOR -->
+            <!-- PASO 1 -->
             <div class="neon-box p-6 rounded-3xl">
                 <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-white text-black w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(255,255,255,0.5)]">1</span> 
+                    <span class="bg-white text-black w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black">1</span> 
                     Ingresa tus Datos de Jugador
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="text-[11px] text-zinc-400 font-bold uppercase tracking-wider block mb-1.5">Player ID (Free Fire)</label>
-                        <input type="number" id="playerId" placeholder="Ej: 123456789" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3.5 text-white font-bold focus:border-white focus:ring-1 focus:ring-white outline-none transition text-sm">
+                        <input type="number" id="playerId" placeholder="Ej: 123456789" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3.5 text-white font-bold focus:border-white outline-none text-sm">
                     </div>
                     <div>
                         <label class="text-[11px] text-zinc-400 font-bold uppercase tracking-wider block mb-1.5">Región</label>
-                        <select id="playerRegion" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3.5 text-white font-bold focus:border-white focus:ring-1 focus:ring-white outline-none transition text-sm">
+                        <select id="playerRegion" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3.5 text-white font-bold focus:border-white outline-none text-sm">
                             <option value="EEUU / LATAM">EE.UU. / LATAM</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <!-- PASO 2: PAQUETES DE DIAMANTES -->
+            <!-- PASO 2: PAQUETES -->
             <div class="neon-box p-6 rounded-3xl">
                 <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-white text-black w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(255,255,255,0.5)]">2</span> 
+                    <span class="bg-white text-black w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black">2</span> 
                     Selecciona tu Paquete de Diamantes
                 </h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="productList"></div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="productList">
+                    <!-- Los paquetes se cargan dinámicamente -->
+                </div>
             </div>
         </div>
 
         <!-- RESUMEN Y PAGO -->
         <div class="space-y-6">
-            <div class="neon-box p-6 rounded-3xl sticky top-24">
-                <h2 class="text-white font-extrabold text-base mb-4 border-b border-zinc-800 pb-3 flex items-center justify-between">
-                    <span>Resumen del Pedido</span>
-                    <i class="fa-solid fa-receipt text-zinc-500 text-sm"></i>
-                </h2>
+            <div class="neon-box p-6 rounded-3xl">
+                <h2 class="text-white font-extrabold text-base mb-4 border-b border-zinc-800 pb-3">Resumen del Pedido</h2>
                 
-                <!-- CÓDIGO DE CREADOR -->
+                <!-- CÓDIGO -->
                 <div class="mb-4 bg-zinc-950 p-3.5 rounded-2xl border border-zinc-800">
                     <label class="text-[11px] text-zinc-400 font-bold block mb-1.5"><i class="fa-solid fa-ticket text-white"></i> Código de Creador:</label>
                     <div class="flex gap-2">
-                        <input type="text" id="creatorCode" class="w-full bg-black border border-zinc-800 rounded-xl p-2.5 text-xs text-white uppercase font-bold focus:border-white outline-none tracking-wider" placeholder="CÓDIGO">
-                        <button onclick="aplicarCodigo()" class="bg-white hover:bg-zinc-200 text-black font-extrabold px-3.5 rounded-xl text-xs transition shadow-sm">Aplicar</button>
+                        <input type="text" id="creatorCode" class="w-full bg-black border border-zinc-800 rounded-xl p-2.5 text-xs text-white uppercase font-bold outline-none" placeholder="CÓDIGO">
+                        <button onclick="aplicarCodigo()" class="bg-white hover:bg-zinc-200 text-black font-extrabold px-3.5 rounded-xl text-xs">Aplicar</button>
                     </div>
                     <span id="codeMsg" class="text-[10px] mt-1.5 block font-bold"></span>
                 </div>
@@ -121,85 +107,69 @@
                     </div>
                 </div>
 
-                <!-- PAGO MÓVIL / AVISO CERRADA -->
+                <!-- PAGO MÓVIL -->
                 <div id="paymentSection" class="space-y-4">
                     <div class="bg-zinc-950 p-4 rounded-2xl border border-zinc-800 text-xs text-zinc-300 space-y-1.5">
-                        <p class="font-bold text-white mb-2 flex items-center gap-1.5">
-                            <i class="fa-solid fa-money-bill-transfer text-emerald-400"></i> Datos Pago Móvil:
-                        </p>
+                        <p class="font-bold text-white mb-2"><i class="fa-solid fa-money-bill-transfer text-emerald-400"></i> Datos Pago Móvil:</p>
                         <p class="flex justify-between"><span>Banco:</span> <strong class="text-white">Venezuela (0102)</strong></p>
-                        <p class="flex justify-between"><span>Teléfono:</span> <strong class="text-white">0412-7920652</strong></p>
+                        <p class="flex justify-between"><span>Teléfono:</span> <strong class="text-white">04127920652</strong></p>
                         <p class="flex justify-between"><span>Cédula:</span> <strong class="text-white">4792065</strong></p>
-                        <button onclick="copiarDatosPago()" class="mt-3 w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold py-2.5 px-3 rounded-xl text-[11px] flex items-center justify-center gap-2 transition active:scale-95">
+                        
+                        <textarea id="clipboardText" class="opacity-0 absolute -z-10 h-0 w-0">Banco: Banco de Venezuela (0102)
+Teléfono: 04127920652
+Cédula: 4792065</textarea>
+
+                        <button onclick="copiarDatosPago()" class="mt-3 w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold py-2.5 px-3 rounded-xl text-[11px] flex items-center justify-center gap-2">
                             <i class="fa-solid fa-copy text-zinc-400"></i> <span id="copyBtnText">Copiar Datos de Pago</span>
                         </button>
                     </div>
 
                     <div>
                         <label class="text-[11px] text-zinc-400 font-bold block mb-1.5">Últimos 4 o 6 dígitos de Referencia:</label>
-                        <input type="number" id="payRef" placeholder="Ej: 4589" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3 text-sm text-white font-bold focus:border-white outline-none">
+                        <input type="number" id="payRef" placeholder="Ej: 4589" class="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-3 text-sm text-white font-bold outline-none">
                     </div>
                 </div>
 
                 <div id="closedNotice" class="hidden bg-red-950/40 border border-red-500/50 p-4 rounded-2xl text-center space-y-2 mb-4">
                     <p class="text-red-400 font-bold text-xs"><i class="fa-solid fa-store-slash"></i> TIENDA FUERA DE LÍNEA</p>
-                    <p class="text-zinc-400 text-[11px]">No estamos recibiendo pagos en este momento. ¡Vuelve más tarde!</p>
                 </div>
 
-                <button onclick="enviarPedido()" id="btnSubmitOrder" class="w-full bg-white text-black font-extrabold py-4 rounded-2xl shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-zinc-200 flex items-center justify-center gap-2 transition active:scale-95 text-sm mt-4 border border-white">
+                <button onclick="enviarPedido()" id="btnSubmitOrder" class="w-full bg-white text-black font-extrabold py-4 rounded-2xl hover:bg-zinc-200 flex items-center justify-center gap-2 text-sm mt-4">
                     <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i> ENVIAR PEDIDO
                 </button>
             </div>
         </div>
     </main>
 
-    <!-- VENTANA MODAL ADMIN PANEL -->
+    <!-- ADMIN MODAL -->
     <div id="adminModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-zinc-950 border border-zinc-700 w-full max-w-md p-6 rounded-3xl space-y-5 shadow-2xl">
             <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
-                <h3 class="text-white font-extrabold text-base flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-white"></i> Panel de Control Hornet
-                </h3>
+                <h3 class="text-white font-extrabold text-base">Panel de Control Hornet</h3>
                 <button onclick="cerrarAdminPanel()" class="text-zinc-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
             </div>
-
             <div id="adminLoginSection" class="space-y-4">
-                <p class="text-xs text-zinc-400 text-center font-semibold">Ingresa tu contraseña de administración:</p>
-                <input type="password" id="adminPassword" placeholder="••••" class="w-full bg-black border border-zinc-700 rounded-2xl p-3.5 text-white text-center tracking-widest text-xl font-bold focus:border-white outline-none">
-                <button onclick="validarPasswordAdmin()" class="w-full bg-white hover:bg-zinc-200 text-black font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider transition shadow-md">
-                    Desbloquear Panel
-                </button>
+                <input type="password" id="adminPassword" placeholder="••••" class="w-full bg-black border border-zinc-700 rounded-2xl p-3.5 text-white text-center tracking-widest text-xl font-bold outline-none">
+                <button onclick="validarPasswordAdmin()" class="w-full bg-white text-black font-bold py-3.5 rounded-2xl text-xs uppercase">Desbloquear</button>
             </div>
-
             <div id="adminDashboardSection" class="space-y-4 hidden">
                 <div class="bg-black border border-zinc-800 p-3.5 rounded-2xl flex items-center justify-between">
-                    <div>
-                        <p class="text-xs font-bold text-white">Estado de la Tienda</p>
-                        <p id="adminStatusLabel" class="text-[11px] text-zinc-400">Online / Recibiendo pedidos</p>
-                    </div>
-                    <button id="adminToggleStoreBtn" onclick="toggleEstadoTienda()" class="px-4 py-2 rounded-xl text-xs font-bold transition">
-                        Cambiar Estado
-                    </button>
+                    <span id="adminStatusLabel" class="text-xs text-zinc-300">Online</span>
+                    <button id="adminToggleStoreBtn" onclick="toggleEstadoTienda()" class="px-3 py-1.5 bg-red-600 text-white rounded-xl text-xs font-bold">Cambiar Estado</button>
                 </div>
-
-                <div>
-                    <p class="text-xs font-bold text-white mb-2"><i class="fa-solid fa-tags"></i> Gestión Rápida de Precios (Bs):</p>
-                    <div id="adminPriceList" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
-                </div>
-
-                <button onclick="guardarNuevosPrecios()" class="w-full bg-white hover:bg-zinc-200 text-black font-bold py-3.5 rounded-2xl text-xs uppercase tracking-wider transition shadow-md">
-                    💾 Guardar Cambios de Precios
-                </button>
+                <div id="adminPriceList" class="space-y-2 max-h-48 overflow-y-auto"></div>
+                <button onclick="guardarNuevosPrecios()" class="w-full bg-white text-black font-bold py-3 rounded-2xl text-xs">Guardar Cambios</button>
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <footer class="text-center py-6 text-zinc-500 text-xs border-t border-zinc-900 mt-auto flex flex-col items-center justify-center gap-1 bg-black">
-        <p class="font-medium">WhatsApp: +58 424-8768281 © 2026 Recargas Hornet</p>
-        <span onclick="intentarAbrirAdmin()" class="text-[9px] text-zinc-700 hover:text-white cursor-pointer select-none px-2 py-0.5 transition">⚙️ Admin Panel</span>
+    <footer class="text-center py-6 text-zinc-500 text-xs border-t border-zinc-900 mt-auto bg-black">
+        <p>WhatsApp: +58 424-8768281 © 2026 Recargas Hornet</p>
+        <span onclick="intentarAbrirAdmin()" class="text-[9px] text-zinc-700 hover:text-white cursor-pointer select-none">⚙️ Admin Panel</span>
     </footer>
 
+    <!-- SCRIPT INFALIBLE -->
     <script>
         let products = JSON.parse(localStorage.getItem('hornet_products')) || [
             { id: 1, name: '110 Diamantes', bs: 860, tag: 'X+1 NP' },
@@ -218,26 +188,22 @@
         let tiendaActiva = localStorage.getItem('hornet_estado') !== 'false'; 
         const wspNum = "584248768281";
 
-        function initStore() {
-            verificarEstadoVisual();
-            renderProducts();
-        }
-
         function renderProducts() {
             const container = document.getElementById('productList');
+            if (!container) return;
             container.innerHTML = '';
             products.forEach(p => {
                 let precioFinal = descuentoAplicado ? p.bs - 30 : p.bs;
                 let isSelected = selectedProduct && selectedProduct.id === p.id;
                 
                 container.innerHTML += `
-                    <div onclick="selectProduct(${p.id})" id="prod-${p.id}" class="product-card bg-black p-3.5 rounded-2xl cursor-pointer transition flex flex-col justify-between border ${isSelected ? 'neon-active-glow' : 'border-zinc-800 hover:border-zinc-600'}">
+                    <div onclick="selectProduct(${p.id})" class="bg-black p-3.5 rounded-2xl cursor-pointer transition flex flex-col justify-between border ${isSelected ? 'neon-active-glow' : 'border-zinc-800 hover:border-zinc-600'}">
                         <div>
-                            <span class="text-[9px] bg-white text-black px-2 py-0.5 rounded-md font-extrabold uppercase tracking-wider">${p.tag}</span>
-                            <h4 class="font-bold text-xs sm:text-sm mt-2 text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-zinc-400 text-xs"></i> ${p.name}</h4>
+                            <span class="text-[9px] bg-white text-black px-2 py-0.5 rounded-md font-extrabold uppercase">${p.tag}</span>
+                            <h4 class="font-bold text-xs sm:text-sm mt-2 text-white"><i class="fa-solid fa-gem text-zinc-400 text-xs"></i> ${p.name}</h4>
                         </div>
                         <div class="mt-3 pt-2 border-t border-zinc-900">
-                            ${descuentoAplicado ? `<span class="text-zinc-500 line-through text-[10px] block font-medium">${p.bs} Bs</span>` : ''}
+                            ${descuentoAplicado ? `<span class="text-zinc-500 line-through text-[10px] block">${p.bs} Bs</span>` : ''}
                             <span class="text-white font-black text-sm">${precioFinal} Bs</span>
                         </div>
                     </div>
@@ -254,18 +220,11 @@
         function aplicarCodigo() {
             const codigoInput = document.getElementById('creatorCode').value.trim().toUpperCase();
             const msg = document.getElementById('codeMsg');
-
-            if (!codigoInput) {
-                msg.innerText = "Ingresa un código.";
-                msg.className = "text-[10px] mt-1.5 block text-zinc-400 font-bold";
-                return;
-            }
-
             if (codigoInput === "JAVI_389") {
                 descuentoAplicado = true;
                 codigoUsado = codigoInput;
                 document.getElementById('discountRow').classList.remove('hidden');
-                msg.innerText = `¡Código "${codigoInput}" aplicado (-30 Bs)!`;
+                msg.innerText = `¡Código aplicado (-30 Bs)!`;
                 msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
                 renderProducts();
                 actualizarResumen();
@@ -273,7 +232,7 @@
                 descuentoAplicado = false;
                 codigoUsado = "";
                 document.getElementById('discountRow').classList.add('hidden');
-                msg.innerText = "❌ Error: Código no existente";
+                msg.innerText = "❌ Código no existente";
                 msg.className = "text-[10px] mt-1.5 block text-red-400 font-bold";
                 renderProducts();
                 actualizarResumen();
@@ -299,14 +258,12 @@
                 statusText.innerText = "Sistema Online";
                 paymentSection.classList.remove('hidden');
                 closedNotice.classList.add('hidden');
-                btnSubmitOrder.classList.remove('opacity-50', 'cursor-not-allowed');
                 btnSubmitOrder.disabled = false;
             } else {
                 statusDot.className = "w-2.5 h-2.5 rounded-full bg-red-600";
                 statusText.innerText = "Fuera de Línea";
                 paymentSection.classList.add('hidden');
                 closedNotice.classList.remove('hidden');
-                btnSubmitOrder.classList.add('opacity-50', 'cursor-not-allowed');
                 btnSubmitOrder.disabled = true;
             }
         }
@@ -323,19 +280,72 @@
         }
 
         function validarPasswordAdmin() {
-            const passInput = document.getElementById('adminPassword').value.trim();
-            let p1 = "15";
-            let p2 = "15";
-            let claveReal = p1 + p2;
-
-            if (passInput === claveReal) {
+            if (document.getElementById('adminPassword').value.trim() === "1515") {
                 document.getElementById('adminLoginSection').classList.add('hidden');
                 document.getElementById('adminDashboardSection').classList.remove('hidden');
                 cargarPanelDashboard();
             } else {
                 alert("❌ Contraseña incorrecta.");
-                document.getElementById('adminPassword').value = '';
             }
         }
 
-        function cargarPanelDashboard(
+        function cargarPanelDashboard() {
+            const container = document.getElementById('adminPriceList');
+            container.innerHTML = '';
+            products.forEach((p, index) => {
+                container.innerHTML += `
+                    <div class="flex items-center justify-between bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-xs">
+                        <span class="text-white font-bold">${p.name}</span>
+                        <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-zinc-700 text-white font-bold px-2.5 py-1.5 rounded-lg text-right">
+                    </div>
+                `;
+            });
+        }
+
+        function toggleEstadoTienda() {
+            tiendaActiva = !tiendaActiva;
+            localStorage.setItem('hornet_estado', tiendaActiva);
+            verificarEstadoVisual();
+        }
+
+        function guardarNuevosPrecios() {
+            products.forEach((p, index) => {
+                const val = document.getElementById(`input-price-${index}`).value;
+                if (val) products[index].bs = Number(val);
+            });
+            localStorage.setItem('hornet_products', JSON.stringify(products));
+            renderProducts();
+            if(selectedProduct) actualizarResumen();
+            alert("✅ ¡Precios guardados!");
+            cerrarAdminPanel();
+        }
+
+        function copiarDatosPago() {
+            const copyText = document.getElementById("clipboardText");
+            copyText.select();
+            try { navigator.clipboard.writeText(copyText.value); } catch (e) { document.execCommand("copy"); }
+            const btn = document.getElementById('copyBtnText');
+            btn.innerText = "¡Copiado!";
+            setTimeout(() => { btn.innerText = "Copiar Datos de Pago"; }, 2000);
+        }
+
+        function enviarPedido() {
+            if (!tiendaActiva) return alert('Tienda cerrada.');
+            const id = document.getElementById('playerId').value.trim();
+            const ref = document.getElementById('payRef').value.trim();
+            if(!id) return alert('Ingresa tu Player ID');
+            if(!selectedProduct) return alert('Selecciona un paquete');
+            if(!ref || ref.length < 4) return alert('Ingresa la referencia');
+
+            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
+            let codTxt = descuentoAplicado ? `%0A🎟️ *Código:* ${codigoUsado} (-30 Bs)` : '';
+            window.open(`https://wa.me/${wspNum}?text=*PEDIDO - RECARGAS HORNET*%0A%0A🆔 *ID:* ${id}%0A📦 *Paq:* ${selectedProduct.name}%0A💵 *Total:* ${total} Bs${codTxt}%0A🧾 *Ref:* ${ref}`, '_blank');
+        }
+
+        // Inicialización instantánea segura
+        verificarEstadoVisual();
+        renderProducts();
+    </script>
+</body>
+</html>
+
