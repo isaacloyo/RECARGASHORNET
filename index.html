@@ -3,361 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recargas Hornet | Diamantes Free Fire Venezuela 24/7</title>
-    <meta name="description" content="Recargas Hornet - Recarga diamantes de Free Fire en Venezuela al instante por ID. Pago Móvil Banco de Venezuela 0102, entregas rápidas y 100% seguro.">
+    <title>Recargas Hornet | Diamantes Free Fire 24/7</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Poppins:wght@400;600;800&display=swap');
-        .font-teko { font-family: 'Teko', sans-serif; }
-        body { font-family: 'Poppins', sans-serif; background-color: #030007; color: #f3f4f6; }
-        
-        .neon-box {
-            background: linear-gradient(145deg, #0d0614, #150a21);
-            border: 1px solid #3b1b5c;
-            box-shadow: 0 4px 25px -5px rgba(168, 85, 247, 0.12);
-        }
-        .neon-active-glow {
-            border: 2px solid #c084fc !important;
-            box-shadow: 0 0 25px rgba(192, 132, 252, 0.5), inset 0 0 10px rgba(192, 132, 252, 0.25);
-            background: linear-gradient(145deg, #180b29, #24103d);
-        }
-        .purple-glow-btn {
-            background: linear-gradient(135deg, #9333ea, #a855f7);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-            transition: all 0.3s ease;
-        }
-        .purple-glow-btn:hover {
-            background: linear-gradient(135deg, #a855f7, #c084fc);
-            box-shadow: 0 0 25px rgba(192, 132, 252, 0.7);
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #0f0b1e; color: #f3f4f6; }
+        .cyber-gradient { background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%); }
+        .cyber-card { background: rgba(26, 20, 45, 0.9); border: 1px solid rgba(124, 58, 237, 0.3); }
+        .cyber-glow { box-shadow: 0 0 20px rgba(124, 58, 237, 0.4); }
     </style>
 </head>
-<body class="bg-[#030007] min-h-screen flex flex-col text-gray-100">
+<body class="min-h-screen flex flex-col justify-between">
 
-    <!-- HEADER -->
-    <header class="bg-[#090312]/90 border-b border-purple-950 p-4 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <!-- Header -->
+    <header class="cyber-card border-b border-purple-900/50 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <span class="inline-block w-2.5 h-2.5 bg-purple-400 rounded-full animate-pulse shadow-[0_0_10px_#c084fc]"></span>
-                <span class="font-teko text-3xl tracking-wider text-white font-bold drop-shadow-[0_2px_8px_rgba(168,85,247,0.5)]">
-                    RECARGAS <span class="text-purple-400">HORNET</span>
-                </span>
+                <span class="text-2xl">🦅</span>
+                <h1 class="text-xl font-black tracking-wider text-purple-400">RECARGAS <span class="text-white">HORNET</span></h1>
             </div>
-            <div class="bg-purple-950/60 border border-purple-800/60 px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-200 flex items-center gap-2 shadow-inner">
-                <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping"></span>
-                <span id="statusText">Sistema Online</span>
-            </div>
+            <button onclick="openAdminModal()" class="text-xs bg-purple-900/50 border border-purple-700/50 px-3 py-1.5 rounded-lg text-purple-300 hover:bg-purple-800 transition">
+                ⚙️ Admin Panel
+            </button>
         </div>
     </header>
 
-    <!-- CONTENIDO -->
-    <main class="max-w-4xl mx-auto p-4 md:p-6 flex-grow w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
-        
-        <div class="md:col-span-2 space-y-6">
-            <!-- PASO 1 -->
-            <div class="neon-box p-6 rounded-3xl">
-                <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-purple-600 text-white w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(168,85,247,0.6)]">1</span> 
-                    Ingresa tus Datos de Jugador
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-[11px] text-purple-300 font-bold uppercase tracking-wider block mb-1.5">Player ID (Free Fire)</label>
-                        <input type="number" id="playerId" placeholder="Ej: 123456789" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3.5 text-white font-bold focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none text-sm transition">
-                    </div>
-                    <div>
-                        <label class="text-[11px] text-purple-300 font-bold uppercase tracking-wider block mb-1.5">Región</label>
-                        <select id="playerRegion" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3.5 text-white font-bold focus:border-purple-500 outline-none text-sm transition">
-                            <option value="EEUU / LATAM">EE.UU. / LATAM</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PASO 2: PAQUETES -->
-            <div class="neon-box p-6 rounded-3xl">
-                <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-purple-600 text-white w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(168,85,247,0.6)]">2</span> 
-                    Selecciona tu Paquete de Diamantes
-                </h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="productList"></div>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6 w-full">
+        <!-- Banner -->
+        <div class="cyber-gradient rounded-2xl p-6 mb-8 text-center cyber-glow relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-2xl md:text-3xl font-black text-white mb-2">DIAMANTES FF AL INSTANTE 💎</h2>
+                <p class="text-purple-200 text-sm md:text-base">Pago Móvil procesado 24/7 de forma rápida y segura.</p>
             </div>
         </div>
 
-        <!-- RESUMEN Y PAGO -->
-        <div class="space-y-6">
-            <div class="neon-box p-6 rounded-3xl">
-                <h2 class="text-white font-extrabold text-base mb-4 border-b border-purple-950 pb-3 flex items-center justify-between">
-                    <span>Resumen del Pedido</span>
-                    <i class="fa-solid fa-receipt text-purple-400 text-sm"></i>
-                </h2>
-                
-                <!-- CÓDIGO -->
-                <div class="mb-4 bg-[#07020d] p-3.5 rounded-2xl border border-purple-950">
-                    <label class="text-[11px] text-purple-300 font-bold block mb-1.5"><i class="fa-solid fa-ticket text-purple-400"></i> Código de Creador:</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="creatorCode" class="w-full bg-black border border-purple-950 rounded-xl p-2.5 text-xs text-white uppercase font-bold outline-none focus:border-purple-500" placeholder="CÓDIGO">
-                        <button onclick="aplicarCodigo()" class="bg-purple-600 hover:bg-purple-500 text-white font-extrabold px-3.5 rounded-xl text-xs transition shadow-md">Aplicar</button>
-                    </div>
-                    <span id="codeMsg" class="text-[10px] mt-1.5 block font-bold"></span>
+        <!-- Store Catalog -->
+        <div id="catalog-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <!-- Los paquetes se cargan dinámicamente -->
+        </div>
+
+        <!-- Checkout Form (Modal/Section) -->
+        <div id="checkout-section" class="cyber-card rounded-2xl p-6 hidden">
+            <h3 class="text-lg font-bold text-purple-300 mb-4 flex justify-between items-center">
+                <span>🛒 Finalizar Recarga</span>
+                <button onclick="closeCheckout()" class="text-sm text-gray-400 hover:text-white">✕ Cancelar</button>
+            </h3>
+            <div id="selected-item-info" class="mb-4 text-sm text-purple-200 bg-purple-950/50 p-3 rounded-xl border border-purple-900"></div>
+            
+            <form id="order-form" onsubmit="sendOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-purple-300 mb-1">ID de Free Fire</label>
+                    <input type="text" id="ff-id" required placeholder="Ej: 123456789" class="w-full bg-purple-950 border border-purple-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-purple-500">
                 </div>
-
-                <div class="space-y-3 text-sm mb-5 bg-[#07020d]/60 p-4 rounded-2xl border border-purple-950/60">
-                    <div class="flex justify-between text-purple-300 text-xs font-medium">
-                        <span>Paquete:</span>
-                        <span id="resProduct" class="text-white font-bold">Selecciona uno</span>
-                    </div>
-                    <div id="discountRow" class="hidden flex justify-between text-xs text-emerald-400 font-bold">
-                        <span>Descuento Creador (-30 Bs):</span>
-                        <span>-30 Bs</span>
-                    </div>
-                    <div class="flex justify-between text-base font-black border-t border-purple-950 pt-3">
-                        <span class="text-purple-200">Total a Pagar:</span>
-                        <span id="resBs" class="text-purple-300 text-lg">0 Bs</span>
-                    </div>
+                <div>
+                    <label class="block text-xs font-semibold text-purple-300 mb-1">Referencia de Pago Móvil (Últimos 6 dígitos)</label>
+                    <input type="text" id="ref-pago" required placeholder="Ej: 123456" maxlength="6" class="w-full bg-purple-950 border border-purple-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-purple-500">
                 </div>
-
-                <!-- PAGO MÓVIL -->
-                <div id="paymentSection" class="space-y-4">
-                    <div class="bg-[#07020d] p-4 rounded-2xl border border-purple-950 text-xs text-purple-200 space-y-1.5">
-                        <p class="font-bold text-white mb-2 flex items-center gap-1.5"><i class="fa-solid fa-money-bill-transfer text-emerald-400"></i> Datos Pago Móvil:</p>
-                        <p class="flex justify-between"><span>Banco:</span> <strong class="text-white">Venezuela (0102)</strong></p>
-                        <p class="flex justify-between"><span>Teléfono:</span> <strong class="text-white">04127920652</strong></p>
-                        <p class="flex justify-between"><span>Cédula:</span> <strong class="text-white">4792065</strong></p>
-                        
-                        <textarea id="clipboardText" class="opacity-0 absolute -z-10 h-0 w-0">Banco: Banco de Venezuela (0102)
-Teléfono: 04127920652
-Cédula: 4792065</textarea>
-
-                        <button onclick="copiarDatosPago()" class="mt-3 w-full bg-purple-950/60 hover:bg-purple-900 border border-purple-800 text-purple-200 font-bold py-2.5 px-3 rounded-xl text-[11px] flex items-center justify-center gap-2 transition">
-                            <i class="fa-solid fa-copy text-purple-400"></i> <span id="copyBtnText">Copiar Datos de Pago</span>
-                        </button>
-                    </div>
-
-                    <div>
-                        <label class="text-[11px] text-purple-300 font-bold block mb-1.5">Últimos 4 o 6 dígitos de Referencia:</label>
-                        <input type="number" id="payRef" placeholder="Ej: 4589" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3 text-sm text-white font-bold outline-none focus:border-purple-500">
-                    </div>
+                <div>
+                    <label class="block text-xs font-semibold text-purple-300 mb-1">Código de Creador (Opcional)</label>
+                    <input type="text" id="creator-code" placeholder="Ej: JAVI_389" class="w-full bg-purple-950 border border-purple-800 rounded-xl px-4 py-2.5 text-white uppercase focus:outline-none focus:border-purple-500">
                 </div>
-
-                <div id="closedNotice" class="hidden bg-red-950/40 border border-red-500/50 p-4 rounded-2xl text-center space-y-2 mb-4">
-                    <p class="text-red-400 font-bold text-xs"><i class="fa-solid fa-store-slash text-red-500"></i> TIENDA FUERA DE LÍNEA</p>
-                </div>
-
-                <button onclick="enviarPedido()" id="btnSubmitOrder" class="w-full purple-glow-btn text-white font-extrabold py-4 rounded-2xl flex items-center justify-center gap-2 text-sm mt-4 cursor-pointer">
-                    <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i> ENVIAR PEDIDO
+                <button type="submit" class="w-full cyber-gradient text-white font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition">
+                    Enviar Pedido por WhatsApp 📲
                 </button>
-            </div>
+            </form>
         </div>
     </main>
 
-    <!-- ADMIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#090312] border border-purple-900 w-full max-w-md p-6 rounded-3xl space-y-5 shadow-2xl">
-            <div class="flex justify-between items-center border-b border-purple-950 pb-3">
-                <h3 class="text-white font-extrabold text-base flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-purple-400"></i> Panel de Control Hornet
-                </h3>
-                <button onclick="cerrarAdminPanel()" class="text-purple-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-purple-500 border-t border-purple-900/30">
+        Recargas Hornet © 2026 - Todos los derechos reservados.
+    </footer>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="cyber-card rounded-2xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <h3 class="text-xl font-bold text-purple-300 mb-4 flex justify-between">
+                <span>⚙️ Panel de Administración</span>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-white">✕</button>
+            </h3>
+            
+            <div id="admin-login" class="space-y-4">
+                <p class="text-sm text-purple-200">Ingresa la contraseña de administrador:</p>
+                <input type="password" id="admin-pass" placeholder="Contraseña" class="w-full bg-purple-950 border border-purple-800 rounded-xl px-4 py-2 text-white">
+                <button onclick="checkAdmin()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-xl transition">Entrar</button>
             </div>
-            <div id="adminLoginSection" class="space-y-4">
-                <input type="password" id="adminPassword" placeholder="••••" class="w-full bg-[#05010a] border border-purple-900 rounded-2xl p-3.5 text-white text-center tracking-widest text-xl font-bold outline-none focus:border-purple-500">
-                <button onclick="validarPasswordAdmin()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-2xl text-xs uppercase shadow-md transition">Desbloquear</button>
-            </div>
-            <div id="adminDashboardSection" class="space-y-4 hidden">
-                <div class="bg-[#05010a] border border-purple-900 p-3.5 rounded-2xl flex items-center justify-between">
-                    <span id="adminStatusLabel" class="text-xs text-purple-300">Online</span>
-                    <button id="adminToggleStoreBtn" onclick="toggleEstadoTienda()" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition">Cambiar Estado</button>
+
+            <div id="admin-content" class="hidden space-y-6">
+                <div>
+                    <h4 class="text-sm font-semibold text-purple-300 mb-2">📊 Progreso de Creadores (0/10)</h4>
+                    <div id="creators-stats" class="space-y-2 text-xs bg-purple-950/50 p-3 rounded-xl border border-purple-900">
+                        <!-- Estadísticas de creadores aquí -->
+                    </div>
                 </div>
-                <div id="adminPriceList" class="space-y-2 max-h-48 overflow-y-auto"></div>
-                <button onclick="guardarNuevosPrecios()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-2xl text-xs transition">Guardar Cambios</button>
+                <hr class="border-purple-900">
+                <div>
+                    <h4 class="text-sm font-semibold text-purple-300 mb-2">Editar Precios y Paquetes</h4>
+                    <div id="admin-packages-list" class="space-y-3">
+                        <!-- Lista de edición de precios -->
+                    </div>
+                </div>
+                <button onclick="saveAdminChanges()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-xl transition">Guardar Cambios</button>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="text-center py-6 text-purple-400/60 text-xs border-t border-purple-950 mt-auto bg-[#030007]">
-        <p class="font-medium">WhatsApp: +58 424-8768281 © 2026 Recargas Hornet</p>
-        <span onclick="intentarAbrirAdmin()" class="text-[9px] text-purple-600 hover:text-purple-300 cursor-pointer select-none mt-1 inline-block">⚙️ Admin Panel</span>
-    </footer>
-
-    <!-- SCRIPT -->
+    <!-- Script de la Tienda -->
     <script>
-        let products = JSON.parse(localStorage.getItem('hornet_products')) || [
-            { id: 1, name: '110 Diamantes', bs: 860, tag: 'X+1 NP' },
-            { id: 2, name: '220 Diamantes', bs: 1616, tag: 'COMBO • X+2 NP' },
-            { id: 3, name: '341 Diamantes', bs: 2371, tag: 'X+3 NP' },
-            { id: 4, name: '572 Diamantes', bs: 3934, tag: 'X+5 NP' },
-            { id: 5, name: '1.166 Diamantes', bs: 7211, tag: 'X+10 NP' },
-            { id: 6, name: '2.398 Diamantes', bs: 14194, tag: 'X+60 NP' },
-            { id: 7, name: '6.160 Diamantes', bs: 35987, tag: 'OFERTA • X+50 NP' },
-            { id: 8, name: '12.320 Diamantes', bs: 71735, tag: 'OFERTA • X+100 NP' }
+        // Datos iniciales de paquetes
+        let packages = JSON.parse(localStorage.getItem('hornet_packages')) || [
+            { id: 1, name: "110 Diamantes", price: 115 },
+            { id: 2, name: "341 Diamantes", price: 340 },
+            { id: 3, name: "860 Diamantes", price: 860 },
+            { id: 4, name: "2200 Diamantes", price: 2150 }
         ];
 
-        let selectedProduct = null;
-        let descuentoAplicado = false;
-        let codigoUsado = "";
-        let tiendaActiva = localStorage.getItem('hornet_estado') !== 'false'; 
-        const wspNum = "584248768281";
+        // Datos de creadores (conteo de ventas)
+        let creatorStats = JSON.parse(localStorage.getItem('hornet_creator_stats')) || {
+            "JAVI_389": 3,
+            "EJEMPLO_FF": 0
+        };
 
-        function renderProducts() {
-            const container = document.getElementById('productList');
-            if (!container) return;
+        let selectedPackage = null;
+        const WHATSAPP_NUMBER = "584248768281"; // Tu número de WhatsApp
+
+        function renderCatalog() {
+            const container = document.getElementById('catalog-container');
             container.innerHTML = '';
-            products.forEach(p => {
-                let precioFinal = descuentoAplicado ? p.bs - 30 : p.bs;
-                let isSelected = selectedProduct && selectedProduct.id === p.id;
-                
+            packages.forEach(pkg => {
                 container.innerHTML += `
-                    <div onclick="selectProduct(${p.id})" class="bg-[#07020d] p-3.5 rounded-2xl cursor-pointer transition flex flex-col justify-between border ${isSelected ? 'neon-active-glow' : 'border-purple-950 hover:border-purple-700'}">
+                    <div class="cyber-card rounded-2xl p-5 flex justify-between items-center transition hover:border-purple-500">
                         <div>
-                            <span class="text-[9px] bg-purple-600 text-white px-2 py-0.5 rounded-md font-extrabold uppercase shadow-[0_0_8px_rgba(168,85,247,0.4)]">${p.tag}</span>
-                            <h4 class="font-bold text-xs sm:text-sm mt-2 text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-purple-400 text-xs"></i> ${p.name}</h4>
+                            <span class="text-xs text-purple-400 font-semibold uppercase tracking-wider">Paquete Oficial</span>
+                            <h3 class="text-lg font-bold text-white">${pkg.name}</h3>
+                            <p class="text-xl font-black text-purple-300">${pkg.price} Bs</p>
                         </div>
-                        <div class="mt-3 pt-2 border-t border-purple-950/60">
-                            ${descuentoAplicado ? `<span class="text-purple-500 line-through text-[10px] block">${p.bs} Bs</span>` : ''}
-                            <span class="text-purple-300 font-black text-sm">${precioFinal} Bs</span>
-                        </div>
+                        <button onclick="selectPackage(${pkg.id})" class="cyber-gradient text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg hover:opacity-90 transition">
+                            Comprar 💎
+                        </button>
                     </div>
                 `;
             });
         }
 
-        function selectProduct(id) {
-            selectedProduct = products.find(p => p.id === id);
-            renderProducts();
-            actualizarResumen();
+        function selectPackage(id) {
+            selectedPackage = packages.find(p => p.id === id);
+            document.getElementById('selected-item-info').innerHTML = `Has seleccionado: <b>${selectedPackage.name}</b> por <b>${selectedPackage.price} Bs</b>`;
+            document.getElementById('checkout-section').classList.remove('hidden');
+            document.getElementById('checkout-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function aplicarCodigo() {
-            const codigoInput = document.getElementById('creatorCode').value.trim().toUpperCase();
-            const msg = document.getElementById('codeMsg');
-            if (codigoInput === "JAVI_389") {
-                descuentoAplicado = true;
-                codigoUsado = codigoInput;
-                document.getElementById('discountRow').classList.remove('hidden');
-                msg.innerText = `¡Código aplicado (-30 Bs)!`;
-                msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
-                renderProducts();
-                actualizarResumen();
+        function closeCheckout() {
+            document.getElementById('checkout-section').classList.add('hidden');
+            selectedPackage = null;
+        }
+
+        function sendOrder(event) {
+            event.preventDefault();
+            const ffId = document.getElementById('ff-id').value;
+            const refPago = document.getElementById('ref-pago').value;
+            let creatorCode = document.getElementById('creator-code').value.trim().toUpperCase();
+
+            if (!creatorCode) {
+                creatorCode = "NINGUNO";
             } else {
-                descuentoAplicado = false;
-                codigoUsado = "";
-                document.getElementById('discountRow').classList.add('hidden');
-                msg.innerText = "❌ Código no existente";
-                msg.className = "text-[10px] mt-1.5 block text-red-400 font-bold";
-                renderProducts();
-                actualizarResumen();
+                // Registrar conteo para el creador
+                if (!creatorStats[creatorCode]) {
+                    creatorStats[creatorCode] = 0;
+                }
+                creatorStats[creatorCode]++;
+                if (creatorStats[creatorCode] > 10) creatorStats[creatorCode] = 10; // Tope máximo 10
+                localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
+            }
+
+            const message = `*¡NUEVO PEDIDO - RECARGAS HORNET!* 🦅💎\n\n` +
+                            `📦 *Paquete:* ${selectedPackage.name}\n` +
+                            `💰 *Monto:* ${selectedPackage.price} Bs\n` +
+                            `🎮 *ID Free Fire:* ${ffId}\n` +
+                            `🧾 *Ref Pago Móvil:* ${refPago}\n` +
+                            `🏷️ *Código de Creador:* ${creatorCode}\n\n` +
+                            `_Verificando pago..._`;
+
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Panel Admin Logic
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-login').classList.remove('hidden');
+            document.getElementById('admin-content').classList.add('hidden');
+            document.getElementById('admin-pass').value = '';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function checkAdmin() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === "1515") {
+                document.getElementById('admin-login').classList.add('hidden');
+                document.getElementById('admin-content').classList.remove('hidden');
+                renderAdminData();
+            } else {
+                alert("Contraseña incorrecta");
             }
         }
 
-        function actualizarResumen() {
-            if (!selectedProduct) return;
-            document.getElementById('resProduct').innerText = selectedProduct.name;
-            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
-            document.getElementById('resBs').innerText = `${total} Bs`;
-        }
-
-        function verificarEstadoVisual() {
-            const statusDot = document.getElementById('statusDot');
-            const statusText = document.getElementById('statusText');
-            const paymentSection = document.getElementById('paymentSection');
-            const closedNotice = document.getElementById('closedNotice');
-            const btnSubmitOrder = document.getElementById('btnSubmitOrder');
-
-            if (tiendaActiva) {
-                statusDot.className = "w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping";
-                statusText.innerText = "Sistema Online";
-                paymentSection.classList.remove('hidden');
-                closedNotice.classList.add('hidden');
-                btnSubmitOrder.disabled = false;
-            } else {
-                statusDot.className = "w-2.5 h-2.5 rounded-full bg-red-600";
-                statusText.innerText = "Fuera de Línea";
-                paymentSection.classList.add('hidden');
-                closedNotice.classList.remove('hidden');
-                btnSubmitOrder.disabled = true;
+        function renderAdminData() {
+            // Renderizar Creadores y su progreso 0/10
+            const statsContainer = document.getElementById('creators-stats');
+            statsContainer.innerHTML = '';
+            for (let [code, count] of Object.entries(creatorStats)) {
+                statsContainer.innerHTML += `
+                    <div class="flex justify-between items-center py-1 border-b border-purple-900/50">
+                        <span class="font-bold text-purple-300">#${code}</span>
+                        <span class="bg-purple-900 px-2.5 py-0.5 rounded-full text-white font-mono">${count}/10 ventas</span>
+                    </div>
+                `;
             }
-        }
 
-        function intentarAbrirAdmin() {
-            document.getElementById('adminModal').classList.remove('hidden');
-            document.getElementById('adminLoginSection').classList.remove('hidden');
-            document.getElementById('adminDashboardSection').classList.add('hidden');
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function cerrarAdminPanel() {
-            document.getElementById('adminModal').classList.add('hidden');
-        }
-
-        function validarPasswordAdmin() {
-            if (document.getElementById('adminPassword').value.trim() === "1515") {
-                document.getElementById('adminLoginSection').classList.add('hidden');
-                document.getElementById('adminDashboardSection').classList.remove('hidden');
-                cargarPanelDashboard();
-            } else {
-                alert("❌ Contraseña incorrecta.");
-            }
-        }
-
-        function cargarPanelDashboard() {
-            const container = document.getElementById('adminPriceList');
-            container.innerHTML = '';
-            products.forEach((p, index) => {
-                container.innerHTML += `
-                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
-                        <span class="text-white font-bold">${p.name}</span>
-                        <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
+            // Renderizar Paquetes para editar
+            const listContainer = document.getElementById('admin-packages-list');
+            listContainer.innerHTML = '';
+            packages.forEach((pkg, index) => {
+                listContainer.innerHTML += `
+                    <div class="flex items-center space-x-2">
+                        <input type="text" id="admin-name-${index}" value="${pkg.name}" class="w-1/2 bg-purple-950 border border-purple-800 rounded-lg px-3 py-1.5 text-white text-xs">
+                        <input type="number" id="admin-price-${index}" value="${pkg.price}" class="w-1/2 bg-purple-950 border border-purple-800 rounded-lg px-3 py-1.5 text-white text-xs">
                     </div>
                 `;
             });
         }
 
-        function toggleEstadoTienda() {
-            tiendaActiva = !tiendaActiva;
-            localStorage.setItem('hornet_estado', tiendaActiva);
-            verificarEstadoVisual();
-        }
-
-        function guardarNuevosPrecios() {
-            products.forEach((p, index) => {
-                const val = document.getElementById(`input-price-${index}`).value;
-                if (val) products[index].bs = Number(val);
+        function saveAdminChanges() {
+            packages.forEach((pkg, index) => {
+                const newName = document.getElementById(`admin-name-${index}`).value;
+                const newPrice = parseFloat(document.getElementById(`admin-price-${index}`).value);
+                if (newName) pkg.name = newName;
+                if (!isNaN(newPrice)) pkg.price = newPrice;
             });
-            localStorage.setItem('hornet_products', JSON.stringify(products));
-            renderProducts();
-            if(selectedProduct) actualizarResumen();
-            alert("✅ ¡Precios guardados!");
-            cerrarAdminPanel();
+            localStorage.setItem('hornet_packages', JSON.stringify(packages));
+            renderCatalog();
+            alert("¡Cambios guardados con éxito!");
+            closeAdminModal();
         }
 
-                function copiarDatosPago() {
-            const copyText = document.getElementById("clipboardText");
-            copyText.select();
-            try { navigator.clipboard.writeText(copyText.value); } catch (e) { document.execCommand("copy"); }
-            const btn = document.getElementById('copyBtnText');
-            btn.innerText = "¡Copiado!";
-            setTimeout(() => { btn.innerText = "Copiar Datos de Pago"; }, 2000);
-        }
-
-        function enviarPedido() {
-            if (!tiendaActiva) return alert('Tienda cerrada.');
-            const id = document.getElementById('playerId').value.trim();
-            const ref = document.getElementById('payRef').value.trim();
-            if(!id) return alert('Ingresa tu Player ID');
-            if(!selectedProduct) return alert('Selecciona un paquete');
-            if(!ref || ref.length < 4) return alert('Ingresa la referencia');
-
-            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
-            let codTxt = descuentoAplicado ? `%0A🎟️ *Código:* ${codigoUsado} (-30 Bs)` : '';
-            window.open(`https://wa.me/${wspNum}?text=*PEDIDO - RECARGAS HORNET*%0A%0A🆔 *ID:* ${id}%0A📦 *Paq:* ${selectedProduct.name}%0A💵 *Total:* ${total} Bs${codTxt}%0A🧾 *Ref:* ${ref}`, '_blank');
-        }
-
-        verificarEstadoVisual();
-        renderProducts();
+        // Inicializar tienda al cargar
+        renderCatalog();
     </script>
 </body>
 </html>
-
