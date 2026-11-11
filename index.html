@@ -493,7 +493,7 @@ Cédula: 4792065</textarea>
         }
         
         function reiniciarCreador(code) {
-            if(confirm(`¿Deseas reiniciar el contador de #${code} a 0/10?`)) {
+            if(confirm(`¿Deseas reiniciar el contador de #${code} a 0/20?`)) {
                 creatorStats[code] = 0;
                 localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
                 cargarPanelDashboard();
