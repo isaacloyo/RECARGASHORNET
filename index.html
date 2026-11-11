@@ -333,6 +333,31 @@ Cédula: 4792065</textarea>
             cerrarAdminPanel();
         }
 
-        function copiarDatosPago() {
+                function copiarDatosPago() {
             const copyText = document.getElementById("clipboardText");
-            copyText.sel
+            copyText.select();
+            try { navigator.clipboard.writeText(copyText.value); } catch (e) { document.execCommand("copy"); }
+            const btn = document.getElementById('copyBtnText');
+            btn.innerText = "¡Copiado!";
+            setTimeout(() => { btn.innerText = "Copiar Datos de Pago"; }, 2000);
+        }
+
+        function enviarPedido() {
+            if (!tiendaActiva) return alert('Tienda cerrada.');
+            const id = document.getElementById('playerId').value.trim();
+            const ref = document.getElementById('payRef').value.trim();
+            if(!id) return alert('Ingresa tu Player ID');
+            if(!selectedProduct) return alert('Selecciona un paquete');
+            if(!ref || ref.length < 4) return alert('Ingresa la referencia');
+
+            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
+            let codTxt = descuentoAplicado ? `%0A🎟️ *Código:* ${codigoUsado} (-30 Bs)` : '';
+            window.open(`https://wa.me/${wspNum}?text=*PEDIDO - RECARGAS HORNET*%0A%0A🆔 *ID:* ${id}%0A📦 *Paq:* ${selectedProduct.name}%0A💵 *Total:* ${total} Bs${codTxt}%0A🧾 *Ref:* ${ref}`, '_blank');
+        }
+
+        verificarEstadoVisual();
+        renderProducts();
+    </script>
+</body>
+</html>
+
