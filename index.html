@@ -333,3 +333,37 @@ Cédula: 4792065</textarea>
             products.forEach((p, index) => {
                 priceContainer.innerHTML += `
                     <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-9
+        function cargarPanelDashboard() {
+            const priceContainer = document.getElementById('adminPriceList');
+            priceContainer.innerHTML = '';
+            products.forEach((p, index) => {
+                priceContainer.innerHTML += `
+                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
+                        <span class="text-white font-bold">${p.name}</span>
+                        <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
+                    </div>
+                `;
+            });
+
+            const creatorsContainer = document.getElementById('adminCreatorsList');
+            creatorsContainer.innerHTML = '';
+            
+            const entries = Object.entries(creatorStats);
+            if (entries.length === 0) {
+                creatorsContainer.innerHTML = `<p class="text-[11px] text-purple-400 text-center py-2">No hay códigos registrados aún.</p>`;
+                return;
+            }
+
+            entries.forEach(([code, count]) => {
+                creatorsContainer.innerHTML += `
+                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
+                        <span class="text-purple-300 font-bold">#${code}</span>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-purple-950 px-2.5 py-1 rounded-lg text-white font-mono font-bold">${count}/10</span>
+                            <button onclick="reiniciarCreador('${code}')" class="bg-purple-900/60 hover:bg-purple-800 text-purple-200 px-2 py-1 rounded-lg text-[10px]" title="Reiniciar contador"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+                }
+        
