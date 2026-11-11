@@ -44,7 +44,7 @@
             <!-- Los paquetes se cargan dinámicamente -->
         </div>
 
-        <!-- Checkout Form (Modal/Section) -->
+        <!-- Checkout Form -->
         <div id="checkout-section" class="cyber-card rounded-2xl p-6 hidden">
             <h3 class="text-lg font-bold text-purple-300 mb-4 flex justify-between items-center">
                 <span>🛒 Finalizar Recarga</span>
@@ -93,16 +93,16 @@
 
             <div id="admin-content" class="hidden space-y-6">
                 <div>
-                    <h4 class="text-sm font-semibold text-purple-300 mb-2">📊 Progreso de Creadores (0/10)</h4>
+                    <h4 class="text-sm font-semibold text-purple-300 mb-2">📊 Progreso de Creadores</h4>
                     <div id="creators-stats" class="space-y-2 text-xs bg-purple-950/50 p-3 rounded-xl border border-purple-900">
-                        <!-- Estadísticas de creadores aquí -->
+                        <!-- Aquí se cargan las estadísticas 0/10 -->
                     </div>
                 </div>
                 <hr class="border-purple-900">
                 <div>
                     <h4 class="text-sm font-semibold text-purple-300 mb-2">Editar Precios y Paquetes</h4>
                     <div id="admin-packages-list" class="space-y-3">
-                        <!-- Lista de edición de precios -->
+                        <!-- Lista de paquetes -->
                     </div>
                 </div>
                 <button onclick="saveAdminChanges()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-xl transition">Guardar Cambios</button>
@@ -110,9 +110,8 @@
         </div>
     </div>
 
-    <!-- Script de la Tienda -->
+    <!-- Script -->
     <script>
-        // Datos iniciales de paquetes
         let packages = JSON.parse(localStorage.getItem('hornet_packages')) || [
             { id: 1, name: "110 Diamantes", price: 115 },
             { id: 2, name: "341 Diamantes", price: 340 },
@@ -120,14 +119,13 @@
             { id: 4, name: "2200 Diamantes", price: 2150 }
         ];
 
-        // Datos de creadores (conteo de ventas)
         let creatorStats = JSON.parse(localStorage.getItem('hornet_creator_stats')) || {
-            "JAVI_389": 3,
-            "EJEMPLO_FF": 0
+            "JAVI_389": 0,
+            "HORNET": 0
         };
 
         let selectedPackage = null;
-        const WHATSAPP_NUMBER = "584248768281"; // Tu número de WhatsApp
+        const WHATSAPP_NUMBER = "584248768281";
 
         function renderCatalog() {
             const container = document.getElementById('catalog-container');
@@ -169,12 +167,12 @@
             if (!creatorCode) {
                 creatorCode = "NINGUNO";
             } else {
-                // Registrar conteo para el creador
                 if (!creatorStats[creatorCode]) {
                     creatorStats[creatorCode] = 0;
                 }
-                creatorStats[creatorCode]++;
-                if (creatorStats[creatorCode] > 10) creatorStats[creatorCode] = 10; // Tope máximo 10
+                if (creatorStats[creatorCode] < 10) {
+                    creatorStats[creatorCode]++;
+                }
                 localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
             }
 
@@ -190,7 +188,6 @@
             window.open(url, '_blank');
         }
 
-        // Panel Admin Logic
         function openAdminModal() {
             document.getElementById('admin-modal').classList.remove('hidden');
             document.getElementById('admin-login').classList.remove('hidden');
@@ -214,19 +211,17 @@
         }
 
         function renderAdminData() {
-            // Renderizar Creadores y su progreso 0/10
             const statsContainer = document.getElementById('creators-stats');
             statsContainer.innerHTML = '';
             for (let [code, count] of Object.entries(creatorStats)) {
                 statsContainer.innerHTML += `
                     <div class="flex justify-between items-center py-1 border-b border-purple-900/50">
                         <span class="font-bold text-purple-300">#${code}</span>
-                        <span class="bg-purple-900 px-2.5 py-0.5 rounded-full text-white font-mono">${count}/10 ventas</span>
+                        <span class="bg-purple-900 px-2.5 py-0.5 rounded-full text-white font-mono">${count}/10</span>
                     </div>
                 `;
             }
 
-            // Renderizar Paquetes para editar
             const listContainer = document.getElementById('admin-packages-list');
             listContainer.innerHTML = '';
             packages.forEach((pkg, index) => {
@@ -252,7 +247,6 @@
             closeAdminModal();
         }
 
-        // Inicializar tienda al cargar
         renderCatalog();
     </script>
 </body>
