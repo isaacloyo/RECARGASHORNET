@@ -171,7 +171,7 @@ Cédula: 4792065</textarea>
                     <button id="adminToggleStoreBtn" onclick="toggleEstadoTienda()" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition">Cambiar Estado</button>
                 </div>
 
-                <!-- SECCIÓN DE CREADORES Y CONTADOR 0/20 -->
+                <!-- SECCIÓN DE CREADORES Y CONTADOR 0/10 -->
                 <div class="space-y-2">
                     <h4 class="text-xs font-extrabold text-purple-300 uppercase tracking-wider"><i class="fa-solid fa-ticket text-purple-400"></i> Progreso de Creadores</h4>
                     <div id="adminCreatorsList" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
@@ -206,9 +206,10 @@ Cédula: 4792065</textarea>
             { id: 8, name: '12.320 Diamantes', bs: 71735, tag: 'OFERTA • X+100 NP' }
         ];
 
-        // Almacenamiento de creadores y conteo de recargas (ej: {"JAVI_389": 3})
+        // Almacenamiento estrictamente limitado a JAVI_389 y JOEL
         let creatorStats = JSON.parse(localStorage.getItem('hornet_creator_stats')) || {
-            "JAVI_389": 0
+            "JAVI_389": 0,
+            "JOEL": 0
         };
 
         let selectedProduct = null;
@@ -260,18 +261,21 @@ Cédula: 4792065</textarea>
                 return;
             }
 
-            // Permite validar el código si existe registrado o lo inicializa por defecto para que los creadores puedan usarlo
-            descuentoAplicado = true;
-            codigoUsado = codigoInput;
-            
-            if (!creatorStats[codigoInput]) {
-                creatorStats[codigoInput] = 0; // Registra automáticamente el creador si no existe
-                localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
+            // Validar estrictamente contra los únicos códigos permitidos
+            if (creatorStats.hasOwnProperty(codigoInput)) {
+                descuentoAplicado = true;
+                codigoUsado = codigoInput;
+                document.getElementById('discountRow').classList.remove('hidden');
+                msg.innerText = `¡Código aplicado (-30 Bs)!`;
+                msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
+            } else {
+                descuentoAplicado = false;
+                codigoUsado = "";
+                document.getElementById('discountRow').classList.add('hidden');
+                msg.innerText = `❌ Código no válido o no autorizado.`;
+                msg.className = "text-[10px] mt-1.5 block text-red-400 font-bold";
             }
 
-            document.getElementById('discountRow').classList.remove('hidden');
-            msg.innerText = `¡Código aplicado (-30 Bs)!`;
-            msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
             renderProducts();
             actualizarResumen();
         }
@@ -326,143 +330,12 @@ Cédula: 4792065</textarea>
             }
         }
 
-                function cargarPanelDashboard() {
-            // Cargar lista de precios
-            const priceContainer = document.getElementById('adminPriceList');
-            priceContainer.innerHTML = '';
-            products.forEach((p, index) => {
-                priceContainer.innerHTML += `
-                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
-                        <span class="text-white font-bold">${p.name}</span>
-                        <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
-                    </div>
-                `;
-            });
-
-            // Cargar estadísticas y contador de creadores (0/10)
-            const creatorsContainer = document.getElementById('adminCreatorsList');
-            creatorsContainer.innerHTML = '';
-            
-            const entries = Object.entries(creatorStats);
-            if (entries.length === 0) {
-                creatorsContainer.innerHTML = `<p class="text-[11px] text-purple-400 text-center py-2">No hay códigos registrados aún.</p>`;
-                return;
-            }
-
-            entries.forEach(([code, count]) => {
-                creatorsContainer.innerHTML += `
-                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
-                        <span class="text-purple-300 font-bold">#${code}</span>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-purple-950 px-2.5 py-1 rounded-lg text-white font-mono font-bold">${count}/10</span>
-                            <button onclick="reiniciarCreador('${code}')" class="bg-purple-900/60 hover:bg-purple-800 text-purple-200 px-2 py-1 rounded-lg text-[10px]" title="Reiniciar contador"><i class="fa-solid fa-rotate-right"></i></button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function reiniciarCreador(code) {
-            if(confirm(`¿Deseas reiniciar el contador de #${code} a 0/10?`)) {
-                creatorStats[code] = 0;
-                localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
-                cargarPanelDashboard();
-            }
-        }
-
-        function toggleEstadoTienda() {
-            tiendaActiva = !tiendaActiva;
-            localStorage.setItem('hornet_estado', tiendaActiva);
-            verificarEstadoVisual();
-        }
-
-        function guardarNuevosPrecios() {
-            products.forEach((p, index) => {
-                const val = document.getElementById(`input-price-${index}`).value;
-                if (val) products[index].bs = Number(val);
-            });
-            localStorage.setItem('hornet_products', JSON.stringify(products));
-            renderProducts();
-            if(selectedProduct) actualizarResumen();
-            alert("✅ ¡Precios guardados!");
-            cerrarAdminPanel();
-        }
-
-        function copiarDatosPago() {
-            const copyText = document.getElementById("clipboardText");
-            copyText.select();
-            try { navigator.clipboard.writeText(copyText.value); } catch (e) { document.execCommand("copy"); }
-            const btn = document.getElementById('copyBtnText');
-            btn.innerText = "¡Copiado!";
-            setTimeout(() => { btn.innerText = "Copiar Datos de Pago"; }, 2000);
-        }
-
-        function enviarPedido() {
-            if (!tiendaActiva) return alert('Tienda cerrada.');
-            const id = document.getElementById('playerId').value.trim();
-            const ref = document.getElementById('payRef').value.trim();
-            if(!id) return alert('Ingresa tu Player ID');
-            if(!selectedProduct) return alert('Selecciona un paquete');
-            if(!ref || ref.length < 4) return alert('Ingresa la referencia');
-
-            if (descuentoAplicado && codigoUsado) {
-                if (!creatorStats[codigoUsado]) {
-                    creatorStats[codigoUsado] = 0;
-                }
-                if (creatorStats[codigoUsado] < 10) {
-                    creatorStats[codigoUsado]++;
-                }
-                localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
-            }
-
-            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
-            let codTxt = descuentoAplicado ? `%0A🎟️ *Código:* ${codigoUsado} (-30 Bs)` : '';
-            window.open(`https://wa.me/${wspNum}?text=*PEDIDO - RECARGAS HORNET*%0A%0A🆔 *ID:* ${id}%0A📦 *Paq:* ${selectedProduct.name}%0A💵 *Total:* ${total} Bs${codTxt}%0A🧾 *Ref:* ${ref}`, '_blank');
-        }
-
-        verificarEstadoVisual();
-        renderProducts();
-        
-            function cargarPanelDashboard() {
-            // Cargar lista de precios
-            const priceContainer = document.getElementById('adminPriceList');
-            priceContainer.innerHTML = '';
-            products.forEach((p, index) => {
-                priceContainer.innerHTML += `
-                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
-                        <span class="text-white font-bold">${p.name}</span>
-                        <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
-                    </div>
-                `;
-            });
-
-            // Cargar estadísticas y contador de creadores (0/10)
-            const creatorsContainer = document.getElementById('adminCreatorsList');
-            creatorsContainer.innerHTML = '';
-            
-            const entries = Object.entries(creatorStats);
-            if (entries.length === 0) {
-                creatorsContainer.innerHTML = `<p class="text-[11px] text-purple-400 text-center py-2">No hay códigos registrados aún.</p>`;
-                return;
-            }
-
-            entries.forEach(([code, count]) => {
-                creatorsContainer.innerHTML += `
-                    <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
-                        <span class="text-purple-300 font-bold">#${code}</span>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-purple-950 px-2.5 py-1 rounded-lg text-white font-mono font-bold">${count}/10</span>
-                            <button onclick="reiniciarCreador('${code}')" class="bg-purple-900/60 hover:bg-purple-800 text-purple-200 px-2 py-1 rounded-lg text-[10px]" title="Reiniciar contador"><i class="fa-solid fa-rotate-right"></i></button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
         function cargarPanelDashboard() {
             const priceContainer = document.getElementById('adminPriceList');
             priceContainer.innerHTML = '';
             products.forEach((p, index) => {
                 priceContainer.innerHTML += `
+                    <div class="flex items-c            priceContainer.innerHTML += `
                     <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
                         <span class="text-white font-bold">${p.name}</span>
                         <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
@@ -470,15 +343,11 @@ Cédula: 4792065</textarea>
                 `;
             });
 
+            // Cargar estadísticas y contador de creadores (0/10)
             const creatorsContainer = document.getElementById('adminCreatorsList');
             creatorsContainer.innerHTML = '';
             
             const entries = Object.entries(creatorStats);
-            if (entries.length === 0) {
-                creatorsContainer.innerHTML = `<p class="text-[11px] text-purple-400 text-center py-2">No hay códigos registrados aún.</p>`;
-                return;
-            }
-
             entries.forEach(([code, count]) => {
                 creatorsContainer.innerHTML += `
                     <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
@@ -491,7 +360,7 @@ Cédula: 4792065</textarea>
                 `;
             });
         }
-        
+
         function reiniciarCreador(code) {
             if(confirm(`¿Deseas reiniciar el contador de #${code} a 0/10?`)) {
                 creatorStats[code] = 0;
@@ -535,11 +404,8 @@ Cédula: 4792065</textarea>
             if(!selectedProduct) return alert('Selecciona un paquete');
             if(!ref || ref.length < 4) return alert('Ingresa la referencia');
 
-            if (descuentoAplicado && codigoUsado) {
-                if (!creatorStats[codigoUsado]) {
-                    creatorStats[codigoUsado] = 0;
-                }
-                if (creatorStats[codigoUsado] < 20) {
+            if (descuentoAplicado && codigoUsado && creatorStats.hasOwnProperty(codigoUsado)) {
+                if (creatorStats[codigoUsado] < 10) {
                     creatorStats[codigoUsado]++;
                 }
                 localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
@@ -554,8 +420,6 @@ Cédula: 4792065</textarea>
         renderProducts();
     </script>
     <link rel="icon" type="image/jpeg" href="9120.jpg">
-    
-    
-    
 </body>
 </html>
+
