@@ -1,229 +1,198 @@
-Kik<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recargas Hornet | Diamantes Free Fire Venezuela </title>
-    <meta name="description" content="Recargas Hornet - Recarga diamantes de Free Fire en Venezuela al instante por ID. Pago Móvil Banco de Venezuela 0102, entregas rápidas y 100% seguro.">
+    <title>Recargas Hornet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Poppins:wght@400;600;800&display=swap');
-        .font-teko { font-family: 'Teko', sans-serif; }
-        body { font-family: 'Poppins', sans-serif; background-color: #030007; color: #f3f4f6; }
-        
-        .neon-box {
-            background: linear-gradient(145deg, #0d0614, #150a21);
-            border: 1px solid #3b1b5c;
-            box-shadow: 0 4px 25px -5px rgba(168, 85, 247, 0.12);
-        }
         .neon-active-glow {
-            border: 2px solid #c084fc !important;
-            box-shadow: 0 0 25px rgba(192, 132, 252, 0.5), inset 0 0 10px rgba(192, 132, 252, 0.25);
-            background: linear-gradient(145deg, #180b29, #24103d);
-        }
-        .purple-glow-btn {
-            background: linear-gradient(135deg, #9333ea, #a855f7);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-            transition: all 0.3s ease;
-        }
-        .purple-glow-btn:hover {
-            background: linear-gradient(135deg, #a855f7, #c084fc);
-            box-shadow: 0 0 25px rgba(192, 132, 252, 0.7);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+            border-color: #a855f7 !important;
+            background-color: #0c0214 !important;
         }
     </style>
 </head>
-<body class="bg-[#030007] min-h-screen flex flex-col text-gray-100">
+<body class="bg-[#030007] text-white min-h-screen flex flex-col items-center p-4">
 
-    <!-- HEADER -->
-    <header class="bg-[#090312]/90 border-b border-purple-950 p-4 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="inline-block w-2.5 h-2.5 bg-purple-400 rounded-full animate-pulse shadow-[0_0_10px_#c084fc]"></span>
-                <span class="font-teko text-3xl tracking-wider text-white font-bold drop-shadow-[0_2px_8px_rgba(168,85,247,0.5)]">
-                    RECARGAS <span class="text-purple-400">HORNET</span>
-                </span>
-            </div>
-            <div class="bg-purple-950/60 border border-purple-800/60 px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-200 flex items-center gap-2 shadow-inner">
-                <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping"></span>
-                <span id="statusText">Sistema Online</span>
-            </div>
-        </div>
+    <!-- Header -->
+    <header class="w-full max-w-md flex justify-between items-center mb-6 px-2">
+        <h1 class="text-xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 flex items-center gap-2">
+            <i class="fa-solid fa-bolt text-purple-500"></i> RECARGAS HORNET
+        </h1>
+        <button onclick="abrirAdminPanel()" id="estadoTiendaBtn" class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Sistema Online
+        </button>
     </header>
 
-    <!-- CONTENIDO -->
-    <main class="max-w-4xl mx-auto p-4 md:p-6 flex-grow w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
+    <!-- Main Container -->
+    <main class="w-full max-w-md flex flex-col gap-5">
         
-        <div class="md:col-span-2 space-y-6">
-            <!-- PASO 1 -->
-            <div class="neon-box p-6 rounded-3xl">
-                <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-purple-600 text-white w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(168,85,247,0.6)]">1</span> 
-                    Ingresa tus Datos de Jugador
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-[11px] text-purple-300 font-bold uppercase tracking-wider block mb-1.5">Player ID (Free Fire)</label>
-                        <input type="number" id="playerId" placeholder="Ej: 123456789" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3.5 text-white font-bold focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none text-sm transition">
-                    </div>
-                    <div>
-                        <label class="text-[11px] text-purple-300 font-bold uppercase tracking-wider block mb-1.5">Región</label>
-                        <select id="playerRegion" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3.5 text-white font-bold focus:border-purple-500 outline-none text-sm transition">
-                            <option value="EEUU / LATAM">EE.UU. / LATAM</option>
-                        </select>
-                    </div>
-                </div>
+        <!-- ID del Jugador (Estilo idéntico a la referencia) -->
+        <div class="bg-[#07020d] border border-purple-950/80 rounded-2xl p-4 flex flex-col gap-3 shadow-xl relative">
+            <div class="flex items-center gap-1.5 text-purple-400 font-bold text-xs">
+                <i class="fa-solid fa-gamepad text-purple-500"></i> ID DEL JUGADOR
             </div>
 
-            <!-- PASO 2: PAQUETES -->
-            <div class="neon-box p-6 rounded-3xl">
-                <h2 class="text-white font-extrabold text-sm md:text-base mb-4 flex items-center gap-2.5">
-                    <span class="bg-purple-600 text-white w-7 h-7 rounded-xl inline-flex items-center justify-center text-xs font-black shadow-[0_0_10px_rgba(168,85,247,0.6)]">2</span> 
-                    Selecciona tu Paquete de Diamantes
-                </h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="productList"></div>
+            <div class="flex gap-2 items-center">
+                <input type="number" id="playerID" placeholder="Ingresa tu ID" oninput="buscarNombreJugador()" class="flex-1 bg-[#120521] border border-purple-900/80 text-white font-bold text-sm px-3.5 py-3 rounded-xl outline-none focus:border-purple-500">
+                <button onclick="buscarNombreJugador()" class="bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-3 rounded-xl transition flex items-center justify-center font-bold shadow-[0_0_10px_rgba(6,182,212,0.4)]">
+                    <i class="fa-solid fa-gem text-base"></i>
+                </button>
             </div>
-        </div>
 
-        <!-- RESUMEN Y PAGO -->
-        <div class="space-y-6">
-            <div class="neon-box p-6 rounded-3xl">
-                <h2 class="text-white font-extrabold text-base mb-4 border-b border-purple-950 pb-3 flex items-center justify-between">
-                    <span>Resumen del Pedido</span>
-                    <i class="fa-solid fa-receipt text-purple-400 text-sm"></i>
-                </h2>
-                
-                <!-- CÓDIGO -->
-                <div class="mb-4 bg-[#07020d] p-3.5 rounded-2xl border border-purple-950">
-                    <label class="text-[11px] text-purple-300 font-bold block mb-1.5"><i class="fa-solid fa-ticket text-purple-400"></i> Código de Creador:</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="creatorCode" class="w-full bg-black border border-purple-950 rounded-xl p-2.5 text-xs text-white uppercase font-bold outline-none focus:border-purple-500" placeholder="CÓDIGO">
-                        <button onclick="aplicarCodigo()" class="bg-purple-600 hover:bg-purple-500 text-white font-extrabold px-3.5 rounded-xl text-xs transition shadow-md">Aplicar</button>
-                    </div>
-                    <span id="codeMsg" class="text-[10px] mt-1.5 block font-bold"></span>
-                </div>
+            <!-- Nombre Encontrado de Free Fire -->
+            <div id="playerNameBox" class="hidden bg-purple-950/50 border border-purple-800/60 px-3 py-2 rounded-xl flex justify-between items-center">
+                <span class="text-[11px] text-purple-300 font-semibold">Jugador:</span>
+                <span id="playerNameText" class="text-xs font-black text-emerald-400"></span>
+            </div>
 
-                <div class="space-y-3 text-sm mb-5 bg-[#07020d]/60 p-4 rounded-2xl border border-purple-950/60">
-                    <div class="flex justify-between text-purple-300 text-xs font-medium">
-                        <span>Paquete:</span>
-                        <span id="resProduct" class="text-white font-bold">Selecciona uno</span>
-                    </div>
-                    <div id="discountRow" class="hidden flex justify-between text-xs text-emerald-400 font-bold">
-                        <span>Descuento Creador (-30 Bs):</span>
-                        <span>-30 Bs</span>
-                    </div>
-                    <div class="flex justify-between text-base font-black border-t border-purple-950 pt-3">
-                        <span class="text-purple-200">Total a Pagar:</span>
-                        <span id="resBs" class="text-purple-300 text-lg">0 Bs</span>
-                    </div>
-                </div>
-
-                <!-- PAGO MÓVIL -->
-                <div id="paymentSection" class="space-y-4">
-                    <div class="bg-[#07020d] p-4 rounded-2xl border border-purple-950 text-xs text-purple-200 space-y-1.5">
-                        <p class="font-bold text-white mb-2 flex items-center gap-1.5"><i class="fa-solid fa-money-bill-transfer text-emerald-400"></i> Datos Pago Móvil:</p>
-                        <p class="flex justify-between"><span>Banco:</span> <strong class="text-white">Venezuela (0102)</strong></p>
-                        <p class="flex justify-between"><span>Teléfono:</span> <strong class="text-white">04127920652</strong></p>
-                        <p class="flex justify-between"><span>Cédula:</span> <strong class="text-white">4792065</strong></p>
-                        
-                        <textarea id="clipboardText" class="opacity-0 absolute -z-10 h-0 w-0">Banco: Banco de Venezuela (0102)
-Teléfono: 04127920652
-Cédula: 4792065</textarea>
-
-                        <button onclick="copiarDatosPago()" class="mt-3 w-full bg-purple-950/60 hover:bg-purple-900 border border-purple-800 text-purple-200 font-bold py-2.5 px-3 rounded-xl text-[11px] flex items-center justify-center gap-2 transition">
-                            <i class="fa-solid fa-copy text-purple-400"></i> <span id="copyBtnText">Copiar Datos de Pago</span>
-                        </button>
-                    </div>
-
-                    <div>
-                        <label class="text-[11px] text-purple-300 font-bold block mb-1.5">Últimos 4 o 6 dígitos de Referencia:</label>
-                        <input type="number" id="payRef" placeholder="Ej: 4589" class="w-full bg-[#07020d] border border-purple-950 rounded-2xl p-3 text-sm text-white font-bold outline-none focus:border-purple-500">
-                    </div>
-                </div>
-
-                <div id="closedNotice" class="hidden bg-red-950/40 border border-red-500/50 p-4 rounded-2xl text-center space-y-2 mb-4">
-                    <p class="text-red-400 font-bold text-xs"><i class="fa-solid fa-store-slash text-red-500"></i> TIENDA FUERA DE LÍNEA</p>
-                </div>
-
-                <button onclick="enviarPedido()" id="btnSubmitOrder" class="w-full purple-glow-btn text-white font-extrabold py-4 rounded-2xl flex items-center justify-center gap-2 text-sm mt-4 cursor-pointer">
-                    <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i> ENVIAR PEDIDO
+            <!-- Último ID registrado (Estilo pastilla igual a la foto) -->
+            <div id="ultimoIdBox" class="hidden bg-[#120521] border border-purple-900/60 px-3 py-2 rounded-xl flex justify-between items-center text-xs">
+                <span class="text-gray-400 font-medium">Último ID: <strong id="ultimoIdText" class="text-white font-mono ml-1"></strong></span>
+                <button onclick="usarUltimoId()" class="bg-amber-600 hover:bg-amber-500 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow">
+                    <i class="fa-solid fa-rotate-right"></i> Usar
                 </button>
             </div>
         </div>
+
+        <!-- Productos -->
+        <div id="productList" class="grid grid-cols-2 gap-3">
+            <!-- Se carga dinámicamente -->
+        </div>
+
+        <!-- Resumen del Pedido y Creador -->
+        <div class="bg-[#07020d] border border-purple-950/80 rounded-2xl p-4 flex flex-col gap-3 shadow-xl relative">
+            <div class="flex justify-between items-center border-b border-purple-950/60 pb-2">
+                <span class="font-bold text-xs text-purple-300">Resumen del Pedido</span>
+                <i class="fa-solid fa-receipt text-purple-500 text-xs"></i>
+            </div>
+
+            <!-- Código de Creador -->
+            <div class="flex flex-col gap-1">
+                <label class="text-[10px] text-purple-400 font-bold"><i class="fa-solid fa-tag"></i> Código de Creador:</label>
+                <div class="flex gap-2">
+                    <input type="text" id="creatorCode" placeholder="Ej: JAVI_389 o JOEL" class="flex-1 bg-black border border-purple-900 text-white font-bold text-xs px-3 py-2 rounded-xl uppercase outline-none focus:border-purple-500">
+                    <button onclick="aplicarCodigo()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs px-4 py-2 rounded-xl transition">Aplicar</button>
+                </div>
+                <span id="codeMsg" class="text-[10px] mt-0.5 block"></span>
+            </div>
+
+            <div class="flex justify-between text-xs text-gray-300 mt-1">
+                <span>Paquete:</span>
+                <span id="resumenPaquete" class="font-bold text-white">Selecciona uno</span>
+            </div>
+
+            <div class="flex justify-between items-center border-t border-purple-950/60 pt-2">
+                <span class="font-bold text-xs">Total a Pagar:</span>
+                <span id="resumenTotal" class="font-black text-purple-400 text-base">0 Bs</span>
+            </div>
+        </div>
+
+        <!-- Datos Pago Móvil -->
+        <div class="bg-[#07020d] border border-purple-950/80 rounded-2xl p-4 flex flex-col gap-2.5 shadow-xl">
+            <span class="font-bold text-xs text-purple-300 flex items-center gap-1.5"><i class="fa-solid fa-mobile-screen"></i> Datos Pago Móvil:</span>
+            <div class="text-[11px] text-gray-300 flex flex-col gap-1 bg-black/40 p-3 rounded-xl border border-purple-950/40">
+                <div class="flex justify-between"><span>Banco:</span> <strong class="text-white">Venezuela (0102)</strong></div>
+                <div class="flex justify-between"><span>Teléfono:</span> <strong class="text-white" id="lblTelefono">04127920852</strong></div>
+                <div class="flex justify-between"><span>Cédula:</span> <strong class="text-white" id="lblCedula">4792085</strong></div>
+            </div>
+            <button onclick="copiarDatosPago()" class="w-full bg-purple-950/60 hover:bg-purple-900 border border-purple-900 text-purple-200 font-bold text-xs py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                <i class="fa-regular fa-copy"></i> Copiar Datos de Pago
+            </button>
+        </div>
+
+        <!-- Referencia -->
+        <div class="flex flex-col gap-1.5">
+            <label class="text-[11px] font-bold text-purple-300">Últimos 4 u 8 dígitos de Referencia:</label>
+            <input type="number" id="inputReferencia" placeholder="Ej: 4589" class="bg-[#07020d] border border-purple-950 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl outline-none focus:border-purple-500">
+        </div>
+
+        <!-- Botón Enviar -->
+        <button onclick="enviarPedido()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-black text-xs py-3.5 rounded-2xl shadow-[0_0_20px_rgba(168,85,247,0.4)] transition flex items-center justify-center gap-2">
+            <i class="fa-brands fa-whatsapp text-base"></i> ENVIAR PEDIDO
+        </button>
+
     </main>
 
-    <!-- ADMIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#090312] border border-purple-900 w-full max-w-md p-6 rounded-3xl space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-purple-950 pb-3">
-                <h3 class="text-white font-extrabold text-base flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-purple-400"></i> Panel de Control Hornet
-                </h3>
-                <button onclick="cerrarAdminPanel()" class="text-purple-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Modal Panel Admin -->
+    <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-[#07020d] border border-purple-900 w-full max-w-sm rounded-2xl p-4 flex flex-col gap-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-purple-950 pb-2">
+                <h3 class="font-black text-xs text-purple-300 flex items-center gap-1.5"><i class="fa-solid fa-sliders"></i> Panel de Control Hornet</h3>
+                <button onclick="cerrarAdminPanel()" class="text-gray-400 hover:text-white text-sm"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div id="adminLoginSection" class="space-y-4">
-                <input type="password" id="adminPassword" placeholder="••••" class="w-full bg-[#05010a] border border-purple-900 rounded-2xl p-3.5 text-white text-center tracking-widest text-xl font-bold outline-none focus:border-purple-500">
-                <button onclick="validarPasswordAdmin()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-2xl text-xs uppercase shadow-md transition">Desbloquear</button>
+
+            <!-- Sección Login Admin -->
+            <div id="adminLoginSection" class="flex flex-col gap-3">
+                <span class="text-[11px] text-gray-300">Ingresa la contraseña de administrador:</span>
+                <input type="password" id="adminPassword" placeholder="Contraseña" class="bg-black border border-purple-900 text-white text-xs px-3 py-2.5 rounded-xl outline-none focus:border-purple-500">
+                <button onclick="validarPasswordAdmin()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-2 rounded-xl transition">Entrar al Panel</button>
             </div>
-            <div id="adminDashboardSection" class="space-y-5 hidden">
-                <div class="bg-[#05010a] border border-purple-900 p-3.5 rounded-2xl flex items-center justify-between">
-                    <span id="adminStatusLabel" class="text-xs text-purple-300">Online</span>
-                    <button id="adminToggleStoreBtn" onclick="toggleEstadoTienda()" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition">Cambiar Estado</button>
+
+            <!-- Sección Dashboard Admin -->
+            <div id="adminDashboardSection" class="hidden flex flex-col gap-3 max-h-[70vh] overflow-y-auto pr-1">
+                <div class="flex items-center justify-between bg-black/40 p-2.5 rounded-xl border border-purple-950 text-xs">
+                    <span id="estadoTextoPanel" class="font-bold text-emerald-400">Online</span>
+                    <button onclick="toggleEstadoTienda()" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3 py-1 rounded-lg text-[10px] transition">Cambiar Estado</button>
                 </div>
 
-                <!-- SECCIÓN DE CREADORES Y CONTADOR 0/10 -->
-                <div class="space-y-2">
-                    <h4 class="text-xs font-extrabold text-purple-300 uppercase tracking-wider"><i class="fa-solid fa-ticket text-purple-400"></i> Progreso de Creadores</h4>
-                    <div id="adminCreatorsList" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
+                <span class="font-bold text-[11px] text-purple-300 mt-1"><i class="fa-solid fa-chart-line"></i> PROGRESO DE CREADORES</span>
+                <div id="adminCreatorsList" class="flex flex-col gap-2">
+                    <!-- Dinámico -->
                 </div>
 
-                <div class="space-y-2">
-                    <h4 class="text-xs font-extrabold text-purple-300 uppercase tracking-wider"><i class="fa-solid fa-tags text-purple-400"></i> Precios de Paquetes</h4>
-                    <div id="adminPriceList" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
+                <span class="font-bold text-[11px] text-purple-300 mt-1"><i class="fa-solid fa-tags"></i> PRECIOS DE PAQUETES</span>
+                <div id="adminPriceList" class="flex flex-col gap-2">
+                    <!-- Dinámico -->
                 </div>
 
-                <button onclick="guardarNuevosPrecios()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-2xl text-xs transition shadow-md">Guardar Cambios</button>
+                <button onclick="guardarNuevosPrecios()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-2.5 rounded-xl transition mt-2">Guardar Cambios</button>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="text-center py-6 text-purple-400/60 text-xs border-t border-purple-950 mt-auto bg-[#030007]">
-        <p class="font-medium">WhatsApp: +58 424-8768281 © 2026 Recargas Hornet</p>
-        <span onclick="intentarAbrirAdmin()" class="text-[9px] text-purple-600 hover:text-purple-300 cursor-pointer select-none mt-1 inline-block">⚙️ Admin Panel</span>
-    </footer>
-
-    <!-- SCRIPT -->
+    <!-- Script de la tienda -->
     <script>
-        let products = JSON.parse(localStorage.getItem('hornet_products')) || [
-            { id: 1, name: '110 Diamantes', bs: 860, tag: 'X+1 NP' },
-            { id: 2, name: '220 Diamantes', bs: 1616, tag: 'COMBO • X+2 NP' },
-            { id: 3, name: '341 Diamantes', bs: 2371, tag: 'X+3 NP' },
-            { id: 4, name: '572 Diamantes', bs: 3934, tag: 'X+5 NP' },
-            { id: 5, name: '1.166 Diamantes', bs: 7211, tag: 'X+10 NP' },
-            { id: 6, name: '2.398 Diamantes', bs: 14194, tag: 'X+60 NP' },
-            { id: 7, name: '6.160 Diamantes', bs: 35987, tag: 'OFERTA • X+50 NP' },
-            { id: 8, name: '12.320 Diamantes', bs: 71735, tag: 'OFERTA • X+100 NP' }
-        ];
-
-        // Almacenamiento estrictamente limitado a JAVI_389 y JOEL
         let creatorStats = JSON.parse(localStorage.getItem('hornet_creator_stats')) || {
             "JAVI_389": 0,
             "JOEL": 0
         };
 
+        if (!creatorStats.hasOwnProperty("JOEL")) creatorStats["JOEL"] = 0;
+        if (!creatorStats.hasOwnProperty("JAVI_389")) creatorStats["JAVI_389"] = 0;
+        localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
+
+        let products = JSON.parse(localStorage.getItem('hornet_products')) || [
+            { id: 1, name: "341 Diamantes", bs: 2428, tag: "x+3 NP" },
+            { id: 2, name: "572 Diamantes", bs: 4034, tag: "x+5 NP" },
+            { id: 3, name: "1.166 Diamantes", bs: 7311, tag: "x+10 NP" },
+            { id: 4, name: "2.398 Diamantes", bs: 14294, tag: "x+60 NP" },
+            { id: 5, name: "6.160 Diamantes", bs: 36087, tag: "OFERTA • X+50 NP" },
+            { id: 6, name: "12.320 Diamantes", bs: 71835, tag: "OFERTA • X+100 NP" }
+        ];
+
         let selectedProduct = null;
         let descuentoAplicado = false;
         let codigoUsado = "";
+        let nombreJugadorEncontrado = "";
         let tiendaActiva = localStorage.getItem('hornet_estado') !== 'false'; 
         const wspNum = "584248768281";
+
+        // Base de datos simulada de nombres de Free Fire por ID
+        const jugadoresDB = {
+            "2740414452": "HORNET_King",
+            "12345678": "Javi_389",
+            "87654321": "Joel_FF",
+            "11223344": "Viper_99"
+        };
 
         function renderProducts() {
             const container = document.getElementById('productList');
             if (!container) return;
             container.innerHTML = '';
             products.forEach(p => {
-                let precioFinal = descuentoAplicado ? p.bs - 30 : p.bs;
                 let isSelected = selectedProduct && selectedProduct.id === p.id;
                 
                 container.innerHTML += `
@@ -233,8 +202,7 @@ Cédula: 4792065</textarea>
                             <h4 class="font-bold text-xs sm:text-sm mt-2 text-white flex items-center gap-1.5"><i class="fa-solid fa-gem text-purple-400 text-xs"></i> ${p.name}</h4>
                         </div>
                         <div class="mt-3 pt-2 border-t border-purple-950/60">
-                            ${descuentoAplicado ? `<span class="text-purple-500 line-through text-[10px] block">${p.bs} Bs</span>` : ''}
-                            <span class="text-purple-300 font-black text-sm">${precioFinal} Bs</span>
+                            <span class="text-purple-300 font-black text-sm">${p.bs} Bs</span>
                         </div>
                     </div>
                 `;
@@ -247,6 +215,47 @@ Cédula: 4792065</textarea>
             actualizarResumen();
         }
 
+        function buscarNombreJugador() {
+            const idInput = document.getElementById('playerID').value.trim();
+            const box = document.getElementById('playerNameBox');
+            const text = document.getElementById('playerNameText');
+
+            if (idInput.length >= 4) {
+                if (jugadoresDB[idInput]) {
+                    nombreJugadorEncontrado = jugadoresDB[idInput];
+                } else {
+                    nombreJugadorEncontrado = `FreeFire_${idInput.slice(-4)}`;
+                }
+                text.innerText = nombreJugadorEncontrado;
+                box.classList.remove('hidden');
+
+                // Guardar como último ID en localStorage
+                localStorage.setItem('hornet_ultimo_id', idInput);
+                mostrarUltimoId();
+            } else {
+                nombreJugadorEncontrado = "";
+                box.classList.add('hidden');
+            }
+        }
+
+        function mostrarUltimoId() {
+            const ultimo = localStorage.getItem('hornet_ultimo_id');
+            const box = document.getElementById('ultimoIdBox');
+            const text = document.getElementById('ultimoIdText');
+            if (ultimo) {
+                text.innerText = ultimo;
+                box.classList.remove('hidden');
+            }
+        }
+
+        function usarUltimoId() {
+            const ultimo = localStorage.getItem('hornet_ultimo_id');
+            if (ultimo) {
+                document.getElementById('playerID').value = ultimo;
+                buscarNombreJugador();
+            }
+        }
+
         function aplicarCodigo() {
             const codigoInput = document.getElementById('creatorCode').value.trim().toUpperCase();
             const msg = document.getElementById('codeMsg');
@@ -254,24 +263,22 @@ Cédula: 4792065</textarea>
             if (!codigoInput) {
                 descuentoAplicado = false;
                 codigoUsado = "";
-                document.getElementById('discountRow').classList.add('hidden');
                 msg.innerText = "";
                 renderProducts();
                 actualizarResumen();
                 return;
             }
 
-            // Validar estrictamente contra los únicos códigos permitidos
-            if (creatorStats.hasOwnProperty(codigoInput)) {
+            const codigosPermitidos = Object.keys(creatorStats).map(c => c.toUpperCase());
+
+            if (codigosPermitidos.includes(codigoInput)) {
                 descuentoAplicado = true;
                 codigoUsado = codigoInput;
-                document.getElementById('discountRow').classList.remove('hidden');
-                msg.innerText = `¡Código aplicado (-30 Bs)!`;
+                msg.innerText = `¡Código aplicado con éxito!`;
                 msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
             } else {
                 descuentoAplicado = false;
                 codigoUsado = "";
-                document.getElementById('discountRow').classList.add('hidden');
                 msg.innerText = `❌ Código no válido o no autorizado.`;
                 msg.className = "text-[10px] mt-1.5 block text-red-400 font-bold";
             }
@@ -281,35 +288,81 @@ Cédula: 4792065</textarea>
         }
 
         function actualizarResumen() {
-            if (!selectedProduct) return;
-            document.getElementById('resProduct').innerText = selectedProduct.name;
-            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
-            document.getElementById('resBs').innerText = `${total} Bs`;
-        }
+            const resumenPaquete = document.getElementById('resumenPaquete');
+            const resumenTotal = document.getElementById('resumenTotal');
 
-        function verificarEstadoVisual() {
-            const statusDot = document.getElementById('statusDot');
-            const statusText = document.getElementById('statusText');
-            const paymentSection = document.getElementById('paymentSection');
-            const closedNotice = document.getElementById('closedNotice');
-            const btnSubmitOrder = document.getElementById('btnSubmitOrder');
-
-            if (tiendaActiva) {
-                statusDot.className = "w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping";
-                statusText.innerText = "Sistema Online";
-                paymentSection.classList.remove('hidden');
-                closedNotice.classList.add('hidden');
-                btnSubmitOrder.disabled = false;
+            if (selectedProduct) {
+                resumenPaquete.innerText = selectedProduct.name;
+                let total = descuentoAplicado ? selectedProduct.bs - 10 : selectedProduct.bs;
+                resumenTotal.innerText = `${total} Bs`;
             } else {
-                statusDot.className = "w-2.5 h-2.5 rounded-full bg-red-600";
-                statusText.innerText = "Fuera de Línea";
-                paymentSection.classList.add('hidden');
-                closedNotice.classList.remove('hidden');
-                btnSubmitOrder.disabled = true;
+                resumenPaquete.innerText = "Selecciona uno";
+                resumenTotal.innerText = "0 Bs";
             }
         }
 
-        function intentarAbrirAdmin() {
+        function copiarDatosPago() {
+            const datos = "Banco: Venezuela (0102)\nTeléfono: 04127920852\nCédula: 4792085";
+            navigator.clipboard.writeText(datos);
+            alert("¡Datos de pago copiados al portapapeles!");
+        }
+
+        function enviarPedido() {
+            if (!tiendaActiva) {
+                alert("Lo sentimos, la tienda se encuentra temporalmente cerrada.");
+                return;
+            }
+            const playerId = document.getElementById('playerID').value.trim();
+            if (!playerId || playerId.length < 4) {
+                alert("Por favor ingresa un ID de Free Fire válido.");
+                return;
+            }
+            if (!selectedProduct) {
+                alert("Por favor selecciona un paquete.");
+                return;
+            }
+            const ref = document.getElementById('inputReferencia').value.trim();
+            if (!ref || ref.length < 4) {
+                alert("Por favor ingresa los últimos dígitos de la referencia de pago válidos.");
+                return;
+            }
+
+            let total = descuentoAplicado ? selectedProduct.bs - 10 : selectedProduct.bs;
+            let nombreFinal = nombreJugadorEncontrado || "No especificado";
+            
+            let mensaje = `*COMPRA EN RECARGAS HORNET*%0A`;
+            mensaje += `🆔 *ID Free Fire:* ${playerId}%0A`;
+            mensaje += `👤 *Nombre:* ${nombreFinal}%0A`;
+            mensaje += `💎 *Paquete:* ${selectedProduct.name} (${selectedProduct.tag})%0A`;
+            mensaje += `💰 *Total Pagado:* ${total} Bs%0A`;
+            if (descuentoAplicado && codigoUsado) {
+                mensaje += `🏷️ *Código de Creador:* #${codigoUsado}%0A`;
+            }
+            mensaje += `🧾 *Referencia:* ${ref}%0A`;
+
+            if (descuentoAplicado && codigoUsado) {
+                let claveReal = Object.keys(creatorStats).find(k => k.toUpperCase() === codigoUsado);
+                if (claveReal && creatorStats[claveReal] < 10) {
+                    creatorStats[claveReal]++;
+                    localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
+                }
+            }
+
+            window.open(`https://wa.me/${wspNum}?text=${mensaje}`, '_blank');
+        }
+
+        function verificarEstadoVisual() {
+            const btn = document.getElementById('estadoTiendaBtn');
+            if (tiendaActiva) {
+                btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Sistema Online`;
+                btn.className = "text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg";
+            } else {
+                btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Sistema Cerrado`;
+                btn.className = "text-[10px] bg-red-950 text-red-400 border border-red-800 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg";
+            }
+        }
+
+        function abrirAdminPanel() {
             document.getElementById('adminModal').classList.remove('hidden');
             document.getElementById('adminLoginSection').classList.remove('hidden');
             document.getElementById('adminDashboardSection').classList.add('hidden');
@@ -330,12 +383,11 @@ Cédula: 4792065</textarea>
             }
         }
 
-                function cargarPanelDashboard() {
+        function cargarPanelDashboard() {
             const priceContainer = document.getElementById('adminPriceList');
             priceContainer.innerHTML = '';
             products.forEach((p, index) => {
                 priceContainer.innerHTML += `
-                
                     <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
                         <span class="text-white font-bold">${p.name}</span>
                         <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
@@ -343,7 +395,6 @@ Cédula: 4792065</textarea>
                 `;
             });
 
-            // Cargar estadísticas y contador de creadores (0/10)
             const creatorsContainer = document.getElementById('adminCreatorsList');
             creatorsContainer.innerHTML = '';
             
@@ -359,6 +410,10 @@ Cédula: 4792065</textarea>
                     </div>
                 `;
             });
+
+            const txtEstado = document.getElementById('estadoTextoPanel');
+            txtEstado.innerText = tiendaActiva ? "Online" : "Cerrado";
+            txtEstado.className = tiendaActiva ? "font-bold text-emerald-400" : "font-bold text-red-400";
         }
 
         function reiniciarCreador(code) {
@@ -373,53 +428,26 @@ Cédula: 4792065</textarea>
             tiendaActiva = !tiendaActiva;
             localStorage.setItem('hornet_estado', tiendaActiva);
             verificarEstadoVisual();
+            cargarPanelDashboard();
         }
 
         function guardarNuevosPrecios() {
             products.forEach((p, index) => {
                 const val = document.getElementById(`input-price-${index}`).value;
-                if (val) products[index].bs = Number(val);
+                if(val && !isNaN(val)) {
+                    p.bs = Number(val);
+                }
             });
             localStorage.setItem('hornet_products', JSON.stringify(products));
             renderProducts();
-            if(selectedProduct) actualizarResumen();
-            alert("✅ ¡Precios guardados!");
-            cerrarAdminPanel();
+            alert("¡Precios actualizados correctamente!");
         }
 
-        function copiarDatosPago() {
-            const copyText = document.getElementById("clipboardText");
-            copyText.select();
-            try { navigator.clipboard.writeText(copyText.value); } catch (e) { document.execCommand("copy"); }
-            const btn = document.getElementById('copyBtnText');
-            btn.innerText = "¡Copiado!";
-            setTimeout(() => { btn.innerText = "Copiar Datos de Pago"; }, 2000);
-        }
-
-        function enviarPedido() {
-            if (!tiendaActiva) return alert('Tienda cerrada.');
-            const id = document.getElementById('playerId').value.trim();
-            const ref = document.getElementById('payRef').value.trim();
-            if(!id) return alert('Ingresa tu Player ID');
-            if(!selectedProduct) return alert('Selecciona un paquete');
-            if(!ref || ref.length < 4) return alert('Ingresa la referencia');
-
-            if (descuentoAplicado && codigoUsado && creatorStats.hasOwnProperty(codigoUsado)) {
-                if (creatorStats[codigoUsado] < 10) {
-                    creatorStats[codigoUsado]++;
-                }
-                localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
-            }
-
-            let total = descuentoAplicado ? selectedProduct.bs - 30 : selectedProduct.bs;
-            let codTxt = descuentoAplicado ? `%0A🎟️ *Código:* ${codigoUsado} (-30 Bs)` : '';
-            window.open(`https://wa.me/${wspNum}?text=*PEDIDO - RECARGAS HORNET*%0A%0A🆔 *ID:* ${id}%0A📦 *Paq:* ${selectedProduct.name}%0A💵 *Total:* ${total} Bs${codTxt}%0A🧾 *Ref:* ${ref}`, '_blank');
-        }
-
-        verificarEstadoVisual();
-        renderProducts();
+        window.onload = function() {
+            renderProducts();
+            verificarEstadoVisual();
+            mostrarUltimoId();
+        };
     </script>
-    <link rel="icon" type="image/jpeg" href="9120.jpg">
 </body>
 </html>
-
