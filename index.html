@@ -31,21 +31,34 @@
         
         <!-- ID del Jugador -->
         <div class="bg-[#07020d] border border-purple-950/80 rounded-2xl p-4 flex flex-col gap-3 shadow-xl relative">
-            <div class="flex items-center gap-1.5 text-purple-400 font-bold text-xs">
-                <i class="fa-solid fa-gamepad text-purple-500"></i> ID DEL JUGADOR
+            <div class="flex items-center justify-between text-purple-400 font-bold text-xs">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-purple-500"></i> ID DEL JUGADOR</span>
             </div>
 
             <div class="flex gap-2 items-center">
-                <input type="text" inputmode="numeric" id="playerID" placeholder="Ingresa tu ID" oninput="buscarNombreJugador()" class="flex-1 bg-[#120521] border border-purple-900/80 text-white font-bold text-sm px-3.5 py-3 rounded-xl outline-none focus:border-purple-500">
-                <button onclick="buscarNombreJugador()" class="bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-3 rounded-xl transition flex items-center justify-center font-bold shadow-[0_0_10px_rgba(6,182,212,0.4)]">
+                <input type="text" inputmode="numeric" id="playerID" placeholder="Ingresa tu ID" oninput="guardarYBuscarID()" class="flex-1 bg-[#120521] border border-purple-900/80 text-white font-bold text-sm px-3.5 py-3 rounded-xl outline-none focus:border-purple-500">
+                <button onclick="guardarYBuscarID()" class="bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-3 rounded-xl transition flex items-center justify-center font-bold shadow-[0_0_10px_rgba(6,182,212,0.4)]">
                     <i class="fa-solid fa-gem text-base"></i>
                 </button>
             </div>
 
-            <!-- Nombre Encontrado de Free Fire -->
-            <div id="playerNameBox" class="hidden bg-purple-950/50 border border-purple-800/60 px-3 py-2 rounded-xl flex justify-between items-center">
-                <span class="text-[11px] text-purple-300 font-semibold">Jugador:</span>
-                <span id="playerNameText" class="text-xs font-black text-emerald-400"></span>
+            <!-- Tarjeta de Jugador Encontrado -->
+            <div id="playerNameBox" class="hidden bg-[#120521] border border-purple-800/80 p-3.5 rounded-2xl flex flex-col gap-1 shadow-lg relative">
+                <div class="flex justify-between items-center">
+                    <span class="text-[9px] text-purple-400 font-extrabold tracking-wider uppercase">Jugador Encontrado</span>
+                    <i class="fa-solid fa-pen-to-square text-purple-400 text-xs"></i>
+                </div>
+                <div class="flex items-center justify-between mt-1">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500 flex items-center justify-center text-amber-400 text-xs font-bold">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span id="playerNameText" class="text-sm font-black text-white tracking-wide"></span>
+                    </div>
+                </div>
+                <div class="text-[11px] text-gray-400 font-mono mt-1">
+                    ID: <strong id="playerIDDisplay" class="text-purple-300"></strong>
+                </div>
             </div>
 
             <!-- Último ID registrado -->
@@ -183,7 +196,7 @@
         const wspNum = "584248768281";
 
         const jugadoresDB = {
-            "2740414452": "HORNET_King",
+            "2740414452": "|OnlyFanz♪",
             "12345678": "Javi_389",
             "87654321": "Joel_FF"
         };
@@ -215,22 +228,25 @@
             actualizarResumen();
         }
 
-        function buscarNombreJugador() {
+        function guardarYBuscarID() {
             const idInput = document.getElementById('playerID').value.trim();
             const box = document.getElementById('playerNameBox');
             const text = document.getElementById('playerNameText');
+            const idDisplay = document.getElementById('playerIDDisplay');
 
-            if (idInput.length >= 3) {
+            if (idInput.length >= 4) {
+                localStorage.setItem('hornet_ultimo_id', idInput);
+                mostrarUltimoId();
+
                 if (jugadoresDB[idInput]) {
                     nombreJugadorEncontrado = jugadoresDB[idInput];
                 } else {
                     nombreJugadorEncontrado = `Jugador_${idInput.slice(-4)}`;
                 }
-                text.innerText = nombreJugadorEncontrado;
-                box.classList.remove('hidden');
 
-                localStorage.setItem('hornet_ultimo_id', idInput);
-                mostrarUltimoId();
+                text.innerText = nombreJugadorEncontrado;
+                idDisplay.innerText = idInput;
+                box.classList.remove('hidden');
             } else {
                 nombreJugadorEncontrado = "";
                 box.classList.add('hidden');
@@ -251,7 +267,7 @@
             const ultimo = localStorage.getItem('hornet_ultimo_id');
             if (ultimo) {
                 document.getElementById('playerID').value = ultimo;
-                buscarNombreJugador();
+                guardarYBuscarID();
             }
         }
 
@@ -272,7 +288,7 @@
             if (codigosPermitidos.includes(codigoInput)) {
                 descuentoAplicado = true;
                 codigoUsado = codigoInput;
-                msg.innerText = `¡Código aplicado con éxito (-10 Bs)!`;
+                msg.innerText = `¡Código aplicado con éxito!`; // Mensaje limpio sin mención de monto
                 msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
             } else {
                 descuentoAplicado = false;
@@ -325,7 +341,7 @@
             }
 
             let total = descuentoAplicado ? selectedProduct.bs - 10 : selectedProduct.bs;
-            let nombreFinal = nombreJugadorEncontrado || "No especificado";
+            let nombreFinal = nombreJugadorEncontrado || `Jugador_${playerId.slice(-4)}`;
             
             let mensaje = `*COMPRA EN RECARGAS HORNET*%0A`;
             mensaje += `🆔 *ID Free Fire:* ${playerId}%0A`;
@@ -353,9 +369,6 @@
             if (tiendaActiva) {
                 btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Sistema Online`;
                 btn.className = "text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg";
-            } else {
-                btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Sistema Cerrado`;
-                btn.className = "text-[10px] bg-red-950 text-red-400 border border-red-800 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg";
             }
         }
 
