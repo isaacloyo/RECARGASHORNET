@@ -36,13 +36,14 @@
             </div>
 
             <div class="flex gap-2 items-center">
+                <!-- Se agregó oninput para que detecte el nombre al instante de escribir cualquier ID -->
                 <input type="text" inputmode="numeric" id="playerID" placeholder="Ingresa tu ID" oninput="guardarYBuscarID()" class="flex-1 bg-[#120521] border border-purple-900/80 text-white font-bold text-sm px-3.5 py-3 rounded-xl outline-none focus:border-purple-500">
                 <button onclick="guardarYBuscarID()" class="bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-3 rounded-xl transition flex items-center justify-center font-bold shadow-[0_0_10px_rgba(6,182,212,0.4)]">
                     <i class="fa-solid fa-gem text-base"></i>
                 </button>
             </div>
 
-            <!-- Tarjeta de Jugador Encontrado (Funciona para cualquier ID) -->
+            <!-- Tarjeta de Jugador Encontrado -->
             <div id="playerNameBox" class="hidden bg-[#120521] border border-purple-800/80 p-3.5 rounded-2xl flex flex-col gap-1 shadow-lg relative">
                 <div class="flex justify-between items-center">
                     <span class="text-[9px] text-purple-400 font-extrabold tracking-wider uppercase">Jugador Encontrado</span>
@@ -187,9 +188,10 @@
         let tiendaActiva = localStorage.getItem('hornet_estado') !== 'false'; 
         const wspNum = "584248768281";
 
-        // Base de datos de nombres especiales (puedes agregar más aquí si quieres)
         const jugadoresDB = {
-            "2740414452": "|OnlyFanz♪"
+            "2740414452": "|OnlyFanz♪",
+            "12345678": "Javi_389",
+            "87654321": "Joel_FF"
         };
 
         function renderProducts() {
@@ -226,12 +228,9 @@
             const idDisplay = document.getElementById('playerIDDisplay');
 
             if (idInput.length >= 4) {
-                // GENERACIÓN AUTOMÁTICA UNIVERSAL:
-                // Si el ID está en la lista especial usa ese nombre, sino crea un perfil profesional único basado en el ID ingresado
                 if (jugadoresDB[idInput]) {
                     nombreJugadorEncontrado = jugadoresDB[idInput];
                 } else {
-                    // Crea un nombre dinámico elegante usando los últimos dígitos del ID de cualquier persona
                     const prefijos = ["PRO", "VIP", "FF", "God", "King", "Killer", "Alpha"];
                     let hashNum = Math.abs(idInput.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % prefijos.length;
                     nombreJugadorEncontrado = `${prefijos[hashNum]}_${idInput.slice(-4)}`;
@@ -359,6 +358,11 @@
 
         function cerrarAdminPanel() {
             document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function validarPasswordAdmin() {
+            if (document.getElementById('adminPassword').value.trim() === "1515") {
+                document.getElementById('adminLoginSection').classList.add('hidden');
         }
 
         function validarPasswordAdmin() {
