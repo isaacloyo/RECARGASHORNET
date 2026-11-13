@@ -60,14 +60,6 @@
                     ID: <strong id="playerIDDisplay" class="text-purple-300"></strong>
                 </div>
             </div>
-
-            <!-- Último ID registrado -->
-            <div id="ultimoIdBox" class="hidden bg-[#120521] border border-purple-900/60 px-3 py-2 rounded-xl flex justify-between items-center text-xs">
-                <span class="text-gray-400 font-medium">Último ID: <strong id="ultimoIdText" class="text-white font-mono ml-1"></strong></span>
-                <button onclick="usarUltimoId()" class="bg-amber-600 hover:bg-amber-500 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow">
-                    <i class="fa-solid fa-rotate-right"></i> Usar
-                </button>
-            </div>
         </div>
 
         <!-- Productos -->
@@ -235,9 +227,6 @@
             const idDisplay = document.getElementById('playerIDDisplay');
 
             if (idInput.length >= 4) {
-                localStorage.setItem('hornet_ultimo_id', idInput);
-                mostrarUltimoId();
-
                 if (jugadoresDB[idInput]) {
                     nombreJugadorEncontrado = jugadoresDB[idInput];
                 } else {
@@ -250,24 +239,6 @@
             } else {
                 nombreJugadorEncontrado = "";
                 box.classList.add('hidden');
-            }
-        }
-
-        function mostrarUltimoId() {
-            const ultimo = localStorage.getItem('hornet_ultimo_id');
-            const box = document.getElementById('ultimoIdBox');
-            const text = document.getElementById('ultimoIdText');
-            if (ultimo) {
-                text.innerText = ultimo;
-                box.classList.remove('hidden');
-            }
-        }
-
-        function usarUltimoId() {
-            const ultimo = localStorage.getItem('hornet_ultimo_id');
-            if (ultimo) {
-                document.getElementById('playerID').value = ultimo;
-                guardarYBuscarID();
             }
         }
 
@@ -288,7 +259,7 @@
             if (codigosPermitidos.includes(codigoInput)) {
                 descuentoAplicado = true;
                 codigoUsado = codigoInput;
-                msg.innerText = `¡Código aplicado con éxito!`; // Mensaje limpio sin mención de monto
+                msg.innerText = `¡Código aplicado con éxito!`;
                 msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
             } else {
                 descuentoAplicado = false;
@@ -369,6 +340,9 @@
             if (tiendaActiva) {
                 btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Sistema Online`;
                 btn.className = "text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg";
+            } else {
+                btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Sistema Cerrado`;
+                btn.className = "text-[10px] bg-red-950 text-red-400 border border-red-800 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-lg";
             }
         }
 
@@ -456,7 +430,6 @@
         window.onload = function() {
             renderProducts();
             verificarEstadoVisual();
-            mostrarUltimoId();
         };
     </script>
 </body>
