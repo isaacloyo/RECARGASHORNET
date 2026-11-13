@@ -29,6 +29,20 @@
     <!-- Main Container -->
     <main class="w-full max-w-md flex flex-col gap-5">
         
+        <!-- ID del Jugador (Limpio, sin tarjeta) -->
+        <div class="bg-[#07020d] border border-purple-950/80 rounded-2xl p-4 flex flex-col gap-3 shadow-xl relative">
+            <div class="flex items-center justify-between text-purple-400 font-bold text-xs">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-purple-500"></i> ID DEL JUGADOR</span>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <input type="text" inputmode="numeric" id="playerID" placeholder="Ingresa tu ID" class="flex-1 bg-[#120521] border border-purple-900/80 text-white font-bold text-sm px-3.5 py-3 rounded-xl outline-none focus:border-purple-500">
+                <button class="bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-3 rounded-xl transition flex items-center justify-center font-bold shadow-[0_0_10px_rgba(6,182,212,0.4)]">
+                    <i class="fa-solid fa-gem text-base"></i>
+                </button>
+            </div>
+        </div>
+
         <!-- Productos -->
         <div id="productList" class="grid grid-cols-2 gap-3">
             <!-- Se carga dinámicamente -->
@@ -234,6 +248,11 @@
                 alert("Lo sentimos, la tienda se encuentra temporalmente cerrada.");
                 return;
             }
+            const playerId = document.getElementById('playerID').value.trim();
+            if (!playerId || playerId.length < 4) {
+                alert("Por favor ingresa un ID de Free Fire válido.");
+                return;
+            }
             if (!selectedProduct) {
                 alert("Por favor selecciona un paquete.");
                 return;
@@ -247,6 +266,7 @@
             let total = descuentoAplicado ? selectedProduct.bs - 10 : selectedProduct.bs;
             
             let mensaje = `*COMPRA EN RECARGAS HORNET*%0A`;
+            mensaje += `🆔 *ID Free Fire:* ${playerId}%0A`;
             mensaje += `💎 *Paquete:* ${selectedProduct.name} (${selectedProduct.tag})%0A`;
             mensaje += `💰 *Total Pagado:* ${total} Bs%0A`;
             if (descuentoAplicado && codigoUsado) {
@@ -363,5 +383,4 @@
         };
     </script>
 </body>
-    </html>
-    
+</html>
