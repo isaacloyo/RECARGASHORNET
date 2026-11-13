@@ -29,14 +29,14 @@
     <!-- Main Container -->
     <main class="w-full max-w-md flex flex-col gap-5">
         
-        <!-- ID del Jugador (Estilo idéntico a la referencia) -->
+        <!-- ID del Jugador -->
         <div class="bg-[#07020d] border border-purple-950/80 rounded-2xl p-4 flex flex-col gap-3 shadow-xl relative">
             <div class="flex items-center gap-1.5 text-purple-400 font-bold text-xs">
                 <i class="fa-solid fa-gamepad text-purple-500"></i> ID DEL JUGADOR
             </div>
 
             <div class="flex gap-2 items-center">
-                <input type="number" id="playerID" placeholder="Ingresa tu ID" oninput="buscarNombreJugador()" class="flex-1 bg-[#120521] border border-purple-900/80 text-white font-bold text-sm px-3.5 py-3 rounded-xl outline-none focus:border-purple-500">
+                <input type="text" inputmode="numeric" id="playerID" placeholder="Ingresa tu ID" oninput="buscarNombreJugador()" class="flex-1 bg-[#120521] border border-purple-900/80 text-white font-bold text-sm px-3.5 py-3 rounded-xl outline-none focus:border-purple-500">
                 <button onclick="buscarNombreJugador()" class="bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-3 rounded-xl transition flex items-center justify-center font-bold shadow-[0_0_10px_rgba(6,182,212,0.4)]">
                     <i class="fa-solid fa-gem text-base"></i>
                 </button>
@@ -48,7 +48,7 @@
                 <span id="playerNameText" class="text-xs font-black text-emerald-400"></span>
             </div>
 
-            <!-- Último ID registrado (Estilo pastilla igual a la foto) -->
+            <!-- Último ID registrado -->
             <div id="ultimoIdBox" class="hidden bg-[#120521] border border-purple-900/60 px-3 py-2 rounded-xl flex justify-between items-center text-xs">
                 <span class="text-gray-400 font-medium">Último ID: <strong id="ultimoIdText" class="text-white font-mono ml-1"></strong></span>
                 <button onclick="usarUltimoId()" class="bg-amber-600 hover:bg-amber-500 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow">
@@ -62,7 +62,7 @@
             <!-- Se carga dinámicamente -->
         </div>
 
-        <!-- Resumen del Pedido y Creador -->
+        <!-- Resumen del Pedido -->
         <div class="bg-[#07020d] border border-purple-950/80 rounded-2xl p-4 flex flex-col gap-3 shadow-xl relative">
             <div class="flex justify-between items-center border-b border-purple-950/60 pb-2">
                 <span class="font-bold text-xs text-purple-300">Resumen del Pedido</span>
@@ -73,7 +73,7 @@
             <div class="flex flex-col gap-1">
                 <label class="text-[10px] text-purple-400 font-bold"><i class="fa-solid fa-tag"></i> Código de Creador:</label>
                 <div class="flex gap-2">
-                    <input type="text" id="creatorCode" placeholder="Ej: JAVI_389 o JOEL" class="flex-1 bg-black border border-purple-900 text-white font-bold text-xs px-3 py-2 rounded-xl uppercase outline-none focus:border-purple-500">
+                    <input type="text" id="creatorCode" class="flex-1 bg-black border border-purple-900 text-white font-bold text-xs px-3 py-2 rounded-xl uppercase outline-none focus:border-purple-500">
                     <button onclick="aplicarCodigo()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs px-4 py-2 rounded-xl transition">Aplicar</button>
                 </div>
                 <span id="codeMsg" class="text-[10px] mt-0.5 block"></span>
@@ -165,12 +165,14 @@
         localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
 
         let products = JSON.parse(localStorage.getItem('hornet_products')) || [
-            { id: 1, name: "341 Diamantes", bs: 2428, tag: "x+3 NP" },
-            { id: 2, name: "572 Diamantes", bs: 4034, tag: "x+5 NP" },
-            { id: 3, name: "1.166 Diamantes", bs: 7311, tag: "x+10 NP" },
-            { id: 4, name: "2.398 Diamantes", bs: 14294, tag: "x+60 NP" },
-            { id: 5, name: "6.160 Diamantes", bs: 36087, tag: "OFERTA • X+50 NP" },
-            { id: 6, name: "12.320 Diamantes", bs: 71835, tag: "OFERTA • X+100 NP" }
+            { id: 1, name: "110 Diamantes", bs: 879, tag: "X+1 NP" },
+            { id: 2, name: "220 Diamantes", bs: 1658, tag: "COMBO • X+2 NP" },
+            { id: 3, name: "341 Diamantes", bs: 2428, tag: "X+3 NP" },
+            { id: 4, name: "572 Diamantes", bs: 4034, tag: "X+5 NP" },
+            { id: 5, name: "1.166 Diamantes", bs: 7311, tag: "X+10 NP" },
+            { id: 6, name: "2.398 Diamantes", bs: 14294, tag: "X+60 NP" },
+            { id: 7, name: "6.160 Diamantes", bs: 36087, tag: "OFERTA • X+50 NP" },
+            { id: 8, name: "12.320 Diamantes", bs: 71835, tag: "OFERTA • X+100 NP" }
         ];
 
         let selectedProduct = null;
@@ -180,12 +182,10 @@
         let tiendaActiva = localStorage.getItem('hornet_estado') !== 'false'; 
         const wspNum = "584248768281";
 
-        // Base de datos simulada de nombres de Free Fire por ID
         const jugadoresDB = {
             "2740414452": "HORNET_King",
             "12345678": "Javi_389",
-            "87654321": "Joel_FF",
-            "11223344": "Viper_99"
+            "87654321": "Joel_FF"
         };
 
         function renderProducts() {
@@ -220,16 +220,15 @@
             const box = document.getElementById('playerNameBox');
             const text = document.getElementById('playerNameText');
 
-            if (idInput.length >= 4) {
+            if (idInput.length >= 3) {
                 if (jugadoresDB[idInput]) {
                     nombreJugadorEncontrado = jugadoresDB[idInput];
                 } else {
-                    nombreJugadorEncontrado = `FreeFire_${idInput.slice(-4)}`;
+                    nombreJugadorEncontrado = `Jugador_${idInput.slice(-4)}`;
                 }
                 text.innerText = nombreJugadorEncontrado;
                 box.classList.remove('hidden');
 
-                // Guardar como último ID en localStorage
                 localStorage.setItem('hornet_ultimo_id', idInput);
                 mostrarUltimoId();
             } else {
@@ -264,7 +263,6 @@
                 descuentoAplicado = false;
                 codigoUsado = "";
                 msg.innerText = "";
-                renderProducts();
                 actualizarResumen();
                 return;
             }
@@ -274,7 +272,7 @@
             if (codigosPermitidos.includes(codigoInput)) {
                 descuentoAplicado = true;
                 codigoUsado = codigoInput;
-                msg.innerText = `¡Código aplicado con éxito!`;
+                msg.innerText = `¡Código aplicado con éxito (-10 Bs)!`;
                 msg.className = "text-[10px] mt-1.5 block text-green-400 font-bold";
             } else {
                 descuentoAplicado = false;
@@ -283,7 +281,6 @@
                 msg.className = "text-[10px] mt-1.5 block text-red-400 font-bold";
             }
 
-            renderProducts();
             actualizarResumen();
         }
 
