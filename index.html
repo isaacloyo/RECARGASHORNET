@@ -330,12 +330,12 @@ Cédula: 4792065</textarea>
             }
         }
 
-        function cargarPanelDashboard() {
+                function cargarPanelDashboard() {
             const priceContainer = document.getElementById('adminPriceList');
             priceContainer.innerHTML = '';
             products.forEach((p, index) => {
                 priceContainer.innerHTML += `
-                    <div class="flex items-cpriceContainer.innerHTML += `
+                
                     <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
                         <span class="text-white font-bold">${p.name}</span>
                         <input type="number" id="input-price-${index}" value="${p.bs}" class="w-20 bg-black border border-purple-900 text-white font-bold px-2.5 py-1.5 rounded-lg text-right focus:border-purple-500 outline-none">
