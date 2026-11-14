@@ -12,9 +12,22 @@
             border-color: #a855f7 !important;
             background-color: #0c0214 !important;
         }
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-animation {
+            animation: slideDown 0.3s ease forwards;
+        }
     </style>
 </head>
 <body class="bg-[#030007] text-white min-h-screen flex flex-col items-center p-4">
+
+    <!-- Notificación Flotante (Toast) -->
+    <div id="toastNotification" class="fixed top-5 z-50 hidden bg-purple-950/90 border border-purple-500 text-white px-4 py-2.5 rounded-2xl shadow-[0_0_20px_rgba(168,85,247,0.5)] text-xs font-bold flex items-center gap-2 toast-animation">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-purple-400"></i>
+        <span id="toastText">Notificación</span>
+    </div>
 
     <!-- Header -->
     <header class="w-full max-w-md flex justify-between items-center mb-6 px-2">
@@ -176,6 +189,26 @@
         let tiendaActiva = localStorage.getItem('hornet_estado') !== 'false'; 
         const wspNum = "584248768281";
 
+        function mostrarToast(mensaje, esError = false) {
+            const toast = document.getElementById('toastNotification');
+            const text = document.getElementById('toastText');
+            const icon = document.getElementById('toastIcon');
+
+            text.innerText = mensaje;
+            if (esError) {
+                icon.className = "fa-solid fa-triangle-exclamation text-red-400";
+                toast.className = "fixed top-5 z-50 bg-red-950/90 border border-red-500 text-white px-4 py-2.5 rounded-2xl shadow-[0_0_20px_rgba(239,68,68,0.5)] text-xs font-bold flex items-center gap-2 toast-animation";
+            } else {
+                icon.className = "fa-solid fa-circle-check text-purple-400";
+                toast.className = "fixed top-5 z-50 bg-purple-950/90 border border-purple-500 text-white px-4 py-2.5 rounded-2xl shadow-[0_0_20px_rgba(168,85,247,0.5)] text-xs font-bold flex items-center gap-2 toast-animation";
+            }
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2500);
+        }
+
         function renderProducts() {
             const container = document.getElementById('productList');
             if (!container) return;
@@ -217,7 +250,8 @@
 
             let claveReal = Object.keys(creatorStats).find(k => k.toUpperCase() === codigoInput);
 
-            if (claveReal && creatorStats[claveReal].active) {
+            // Valida que exista, esté activo y su contador sea menor a 10
+            if (claveReal && creatorStats[claveReal].active && creatorStats[claveReal].count < 10) {
                 descuentoAplicado = true;
                 codigoUsado = claveReal;
                 msg.innerText = `¡Código aplicado con éxito!`;
@@ -225,7 +259,7 @@
             } else {
                 descuentoAplicado = false;
                 codigoUsado = "";
-                msg.innerText = `❌ El código no es válido.`;
+                msg.innerText = `❌ El código no es válido o ha alcanzado su límite.`;
                 msg.className = "text-[10px] mt-1.5 block text-red-400 font-bold";
             }
 
@@ -249,7 +283,7 @@
         function copiarDatosPago() {
             const datos = "Banco: Venezuela (0102)\nTeléfono: 04127920852\nCédula: 4792085";
             navigator.clipboard.writeText(datos);
-            alert("¡Datos de pago copiados al portapapeles!");
+            mostrarToast("¡Datos de pago copiados!");
         }
 
         function enviarPedido() {
@@ -283,9 +317,13 @@
             }
             mensaje += `🧾 *Referencia:* ${ref}%0A`;
 
+            // AL ENVIAR EL PEDIDO: Suma 1 uso. Si llega a 10, se bloquea automáticamente.
             if (descuentoAplicado && codigoUsado) {
                 if (creatorStats[codigoUsado] && creatorStats[codigoUsado].active && creatorStats[codigoUsado].count < 10) {
                     creatorStats[codigoUsado].count++;
+                    if (creatorStats[codigoUsado].count >= 10) {
+                        creatorStats[codigoUsado].active = false; // Se bloquea solo al llegar a 10/10
+                    }
                     localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
                 }
             }
@@ -317,11 +355,22 @@
 
         function validarPasswordAdmin() {
             if (document.getElementById('adminPassword').value.trim() === "1515") {
+                document.getElementById('adminLoginSection').classLis.remove('hidden');
+            document.getElementById('adminDashboardSection').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function cerrarAdminPanel() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function validarPasswordAdmin() {
+            if (document.getElementById('adminPassword').value.trim() === "1515") {
                 document.getElementById('adminLoginSection').classList.add('hidden');
                 document.getElementById('adminDashboardSection').classList.remove('hidden');
                 cargarPanelDashboard();
             } else {
-                alert("❌ Contraseña incorrecta.");
+                mostrarToast("Contraseña incorrecta", true);
             }
         }
 
@@ -342,16 +391,17 @@
             
             const entries = Object.entries(creatorStats);
             entries.forEach(([code, data]) => {
-                let isActive = data.active;
+                let isActive = data.active && data.count < 10;
                 creatorsContainer.innerHTML += `
                     <div class="flex items-center justify-between bg-[#05010a] p-2.5 rounded-xl border border-purple-950 text-xs">
                         <div class="flex flex-col">
                             <span class="text-purple-300 font-bold">#${code}</span>
-                            <span class="text-[9px] ${isActive ? 'text-emerald-400' : 'text-red-400'} font-bold">${isActive ? 'Activo' : 'Desactivado'}</span>
+                            <span class="text-[9px] ${isActive ? 'text-emerald-400' : 'text-red-400'} font-bold">${isActive ? 'Activo' : 'Límite 10/10'}</span>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-purple-950 px-2.5 py-1 rounded-lg text-white font-mono font-bold">${data.count}/10</span>
-                            <button onclick="toggleEstadoCreador('${code}')" class="${isActive ? 'bg-amber-600 hover:bg-amber-500' : 'bg-emerald-600 hover:bg-emerald-500'} text-white px-2 py-1 rounded-lg text-[10px]" title="Reiniciar contador"><i class="fa-solid fa-rotate-right"></i></button>
+                        <div class="flex items-center gap-1.5">
+                            <span class="bg-purple-950 px-2 py-1 rounded-lg text-white font-mono font-bold">${data.count}/10</span>
+                            <button onclick="toggleEstadoCreador('${code}')" class="${data.active ? 'bg-amber-600 hover:bg-amber-500' : 'bg-emerald-600 hover:bg-emerald-500'} text-white px-2 py-1 rounded-lg text-[10px]" title="Cambiar estado">${data.active ? 'Desactivar' : 'Activar'}</button>
+                            <button onclick="reiniciarCreador('${code}')" class="bg-purple-900/60 hover:bg-purple-800 text-purple-200 px-2 py-1 rounded-lg text-[10px]" title="Reiniciar contador"><i class="fa-solid fa-rotate-right"></i></button>
                             <button onclick="eliminarCreador('${code}')" class="bg-red-950 hover:bg-red-900 text-red-300 px-2 py-1 rounded-lg text-[10px]" title="Eliminar código"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
@@ -368,12 +418,12 @@
             const nuevoCodigo = input.value.trim().toUpperCase();
 
             if (!nuevoCodigo) {
-                alert("Escribe un nombre de código válido.");
+                mostrarToast("Escribe un código válido", true);
                 return;
             }
 
             if (creatorStats[nuevoCodigo]) {
-                alert("¡Este código ya existe en el sistema!");
+                mostrarToast("¡Este código ya existe!", true);
                 return;
             }
 
@@ -381,7 +431,7 @@
             localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
             input.value = '';
             cargarPanelDashboard();
-            alert(`¡Código #${nuevoCodigo} agregado con éxito!`);
+            mostrarToast(`¡Código #${nuevoCodigo} agregado!`);
         }
 
         function eliminarCreador(code) {
@@ -399,11 +449,14 @@
             aplicarCodigo();
         }
 
+        // AL REINICIAR: Vuelve a 0/10 y SE REACTIVA AUTOMÁTICAMENTE a 1/10 en el siguiente uso
         function reiniciarCreador(code) {
-            if(confirm(`¿Deseas reiniciar el contador de #${code} a 0/10?`)) {
+            if(confirm(`¿Deseas reiniciar el contador de #${code} a 0/10 para un nuevo ciclo?`)) {
                 creatorStats[code].count = 0;
+                creatorStats[code].active = true; // Se reactiva solo
                 localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
                 cargarPanelDashboard();
+                mostrarToast(`¡Código #${code} reiniciado a 0/10!`);
             }
         }
 
@@ -423,7 +476,7 @@
             });
             localStorage.setItem('hornet_products', JSON.stringify(products));
             renderProducts();
-            alert("¡Precios actualizados correctamente!");
+            mostrarToast("¡Precios actualizados!");
         }
 
         window.onload = function() {
