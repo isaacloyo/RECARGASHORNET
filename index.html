@@ -137,13 +137,7 @@
                     <button onclick="toggleEstadoTienda()" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3 py-1 rounded-lg text-[10px] transition">Cambiar Estado</button>
                 </div>
 
-                <span class="font-bold text-[11px] text-purple-300 mt-1"><i class="fa-solid fa-user-plus"></i> AGREGAR NUEVO CREADOR</span>
-                <div class="flex gap-2">
-                    <input type="text" id="nuevoCreadorInput" placeholder="Ej: SADICO15" class="flex-1 bg-black border border-purple-900 text-white font-bold text-xs px-3 py-2 rounded-xl uppercase outline-none focus:border-purple-500">
-                    <button onclick="agregarNuevoCreador()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-2 rounded-xl transition">Agregar</button>
-                </div>
-
-                <span class="font-bold text-[11px] text-purple-300 mt-1"><i class="fa-solid fa-chart-line"></i> GESTIONAR CREADORES</span>
+                <span class="font-bold text-[11px] text-purple-300 mt-1"><i class="fa-solid fa-chart-line"></i> GESTIONAR CREADORES (0/10)</span>
                 <div id="adminCreatorsList" class="flex flex-col gap-2">
                     <!-- Dinámico -->
                 </div>
@@ -160,18 +154,29 @@
 
     <!-- Script de la tienda -->
     <script>
-        // Códigos predeterminados globales iniciales (incluyendo SADICO15)
         let creatorStats = JSON.parse(localStorage.getItem('hornet_creator_stats')) || {
-            "JAVI_389": { count: 0, active: true },
             "JOEL": { count: 0, active: true },
             "SADICO15": { count: 0, active: true }
         };
+
+        // Limpiar JAVI_389 si estaba guardado previamente en el navegador del usuario
+        if (creatorStats["JAVI_389"]) {
+            delete creatorStats["JAVI_389"];
+        }
 
         Object.keys(creatorStats).forEach(k => {
             if (typeof creatorStats[k] !== 'object') {
                 creatorStats[k] = { count: creatorStats[k], active: true };
             }
         });
+        
+        if (!creatorStats["SADICO15"]) {
+            creatorStats["SADICO15"] = { count: 0, active: true };
+        }
+        if (!creatorStats["JOEL"]) {
+            creatorStats["JOEL"] = { count: 0, active: true };
+        }
+        
         localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
 
         let products = JSON.parse(localStorage.getItem('hornet_products')) || [
@@ -388,7 +393,7 @@
                             <span class="text-[9px] ${isActive ? 'text-emerald-400' : 'text-red-400'} font-bold">${isActive ? 'Activo' : 'Límite 10/10'}</span>
                         </div>
                         <div class="flex items-center gap-1.5">
-                            <span class="bg-purple-950 px-2 py-1 rounded-lg text-white font-mono font-bold">${data.count}/10</span>
+                            <span class="bg-purple-950 px-2.5 py-1 rounded-lg text-white font-mono font-bold">${data.count}/10</span>
                             <button onclick="toggleEstadoCreador('${code}')" class="${data.active ? 'bg-amber-600 hover:bg-amber-500' : 'bg-emerald-600 hover:bg-emerald-500'} text-white px-2 py-1 rounded-lg text-[10px]" title="Cambiar estado">${data.active ? 'Desactivar' : 'Activar'}</button>
                             <button onclick="reiniciarCreador('${code}')" class="bg-purple-900/60 hover:bg-purple-800 text-purple-200 px-2 py-1 rounded-lg text-[10px]" title="Reiniciar contador"><i class="fa-solid fa-rotate-right"></i></button>
                             <button onclick="eliminarCreador('${code}')" class="bg-red-950 hover:bg-red-900 text-red-300 px-2 py-1 rounded-lg text-[10px]" title="Eliminar código"><i class="fa-solid fa-trash"></i></button>
@@ -400,27 +405,6 @@
             const txtEstado = document.getElementById('estadoTextoPanel');
             txtEstado.innerText = tiendaActiva ? "Online" : "Cerrado";
             txtEstado.className = tiendaActiva ? "font-bold text-emerald-400" : "font-bold text-red-400";
-        }
-
-        function agregarNuevoCreador() {
-            const input = document.getElementById('nuevoCreadorInput');
-            const nuevoCodigo = input.value.trim().toUpperCase();
-
-            if (!nuevoCodigo) {
-                mostrarToast("Escribe un código válido", true);
-                return;
-            }
-
-            if (creatorStats[nuevoCodigo]) {
-                mostrarToast("¡Este código ya existe!", true);
-                return;
-            }
-
-            creatorStats[nuevoCodigo] = { count: 0, active: true };
-            localStorage.setItem('hornet_creator_stats', JSON.stringify(creatorStats));
-            input.value = '';
-            cargarPanelDashboard();
-            mostrarToast(`¡Código #${nuevoCodigo} agregado!`);
         }
 
         function eliminarCreador(code) {
