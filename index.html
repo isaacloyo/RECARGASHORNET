@@ -355,17 +355,6 @@
 
         function validarPasswordAdmin() {
             if (document.getElementById('adminPassword').value.trim() === "1515") {
-                document.getElementById('adminLoginSection').classLis.remove('hidden');
-            document.getElementById('adminDashboardSection').classList.add('hidden');
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function cerrarAdminPanel() {
-            document.getElementById('adminModal').classList.add('hidden');
-        }
-
-        function validarPasswordAdmin() {
-            if (document.getElementById('adminPassword').value.trim() === "1515") {
                 document.getElementById('adminLoginSection').classList.add('hidden');
                 document.getElementById('adminDashboardSection').classList.remove('hidden');
                 cargarPanelDashboard();
